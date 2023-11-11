@@ -5,7 +5,7 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#C4E4E4"
+    android:background="#E1F3F3"
 
     android:backgroundTint="#B7DCE3"
     tools:context=".MainActivity">
@@ -55,7 +55,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -65,7 +65,6 @@
                     android:id="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
                     android:layout_marginBottom="50dp"
                     android:fontFamily="serif"
                     android:text="You are a Patient?\nFEELING TIRED?\n FIND A DOCTOR."
@@ -82,22 +81,23 @@
                 <Button
                     android:id="@+id/searchArea"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_btn_search_location"
+                    android:layout_height="59dp"
                     android:drawableStart="@drawable/location"
                     android:drawableEnd="@drawable/go"
-                    android:paddingHorizontal="20dp"
+                    android:paddingHorizontal="10dp"
                     android:text="SELECT SEARCH AREA"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:background="@drawable/bg_btn_search_location"
+
 
                     />
 
                 <Button
                     android:id="@+id/searchDoc"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="59dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="50dp"
                     android:background="@drawable/bg_btn_search_location"
                     android:drawableStart="@drawable/person"
                     android:drawableEnd="@drawable/go"
@@ -112,8 +112,6 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="109dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginBottom="10dp"
                     android:fontFamily="serif"
                     android:text="You are a Doctor?\n Create a publicity for your Healthcare Office"
                     android:textAlignment="center"
@@ -128,20 +126,14 @@
 
                 <ImageButton
                     android:id="@+id/imageButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="268dp"
-                    android:src="@drawable/doctors" />
+                    android:layout_width="318dp"
+                    android:layout_height="132dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:text="TextView" />
+
+
 
             </LinearLayout>
 
