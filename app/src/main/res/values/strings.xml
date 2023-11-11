@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MedicProject</string>
+    <string name="authentication">Authentication</string>
+
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">Close</string>
+</resources>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@color/blue"
+    android:gravity="center"
+
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="70dp">
+
+        <ImageView
+            android:layout_width="67dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/homeimg"
+
+            />
+
+        <TextView
+            android:id="@+id/identif"
+            android:layout_width="249dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="sans-serif"
+            android:text="Doctor Finder"
+            android:textColor="@color/white"
+            android:textSize="26dp"
+            android:textStyle="italic"
+
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/loginMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#27114A51"
+        android:gravity="center|center_vertical"
+        android:rotation="0"
+        android:text="Sign up"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#0B4E48"
+        android:textColorHint="#CF2525"
+        android:textColorLink="#EAEAEA"
+        app:cornerRadius="9dp"
+        app:iconTint="#9C2323" />
+</LinearLayout>
