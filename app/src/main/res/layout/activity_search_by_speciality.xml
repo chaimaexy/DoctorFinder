@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".CreateAccountDoc">
+    tools:context=".SearchBySpeciality">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Are you a Doctor?"
+                    android:text="Are you a Patient?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -66,104 +66,59 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="18dp">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="356dp"
-                android:layout_height="115dp"
-                android:src="@drawable/homeimg" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50sp"
+                android:gravity="right"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/location" />
+
+                <Spinner
+                    android:id="@+id/spinnerLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:prompt="@string/select_Location" />
+
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/spinnerSpecialty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:prompt="@string/select_specialty"
+                android:spinnerMode="dropdown" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8sp"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Personnal info"
-                android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:layout_height="match_parent"
+                android:text="Preference :" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:padding="7dp">
-
-                <EditText
-                    android:id="@+id/doctorName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:hint="Full name"
-                    android:inputType="text"
-                     />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:padding="7dp">
-
-                <EditText
-                    android:id="@+id/doctorEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:hint="Enter email : abc@xyz.com"
-                    android:inputType="textEmailAddress" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:padding="7dp">
-
-                <EditText
-                    android:id="@+id/doctor_pass"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:hint="Password"
-                    android:inputType="textPassword"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:padding="7dp">
-
-                <EditText
-                    android:id="@+id/doctor_pass_confirm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:hint="Confirm Password name"
-                    android:inputType="textPassword" />
-
-
-            </LinearLayout>
             <RadioGroup
                 android:id="@+id/radioGroupGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:layout_marginBottom="70sp"
                 android:gravity="center"
                 android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonNoPref"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No preference " />
 
                 <RadioButton
                     android:id="@+id/radioButtonMale"
@@ -177,47 +132,19 @@
                     android:layout_height="wrap_content"
                     android:text="Female" />
             </RadioGroup>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="10sp"
-            android:padding="7dp">
 
-            <ImageView
-                android:id="@+id/imageViewProfile"
-                android:layout_width="119dp"
-                android:layout_height="116dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/add_a_photo"
-                android:clickable="true"
-                android:contentDescription="Profile Picture"
-                android:onClick="selectProfilePicture"
-                android:scaleType="centerCrop" />
-
-            <TextView
-                android:layout_width="211dp"
-                android:layout_height="42dp"
-                android:gravity="center"
-                android:text="Add profile picture"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:onClick="selectProfilePicture"
-                android:textStyle="bold" />
-
-        </LinearLayout>
             <Button
                 android:id="@+id/doctor_sign_in_button1"
-                android:layout_width="200sp"
+                android:layout_width="127dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
 
 
                 android:background="@drawable/bg_btn_search_doc"
+                android:drawableLeft="@drawable/search"
                 android:gravity="center"
-                android:text="Next >"
+                android:padding="10sp"
+                android:text="Search"
                 android:textStyle="bold" />
 
         </LinearLayout>

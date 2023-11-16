@@ -4,4 +4,21 @@
 
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="select_day_prompt">Select Day</string>
+    <string name="start_time_hint">Start Time</string>
+    <string name="end_time_hint">End Time</string>
+    <string name="save_schedule">Save Schedule</string>
+    <string name="select_specialty">Select Speciality</string>
+    <string name="select_Location">City</string>
+    <string-array name="specialties_array">
+        <item>Cardiologist</item>
+        <item>Dermatologist</item>
+        <item>Orthopedic Surgeon</item>
+
+    </string-array>
+    <string-array name="moroccan_cities">
+        <item>Casablanca</item>
+        <item>Rabat</item>
+        <item>Marrakech</item>
+    </string-array>
 </resources>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="fill"
     android:background="@color/background"
-    tools:context=".CreateAccoutDoc3">
+    tools:context=".CreateAccountDoc4">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -92,119 +92,172 @@
                 android:layout_marginTop="8sp"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Health center info"
+                android:text="Working Hours"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:padding="7dp">
+                android:gravity="left"
+                android:text="Days of work:" />
 
-                <EditText
-                    android:id="@+id/doctorprice"
+
+            <LinearLayout
+                android:id="@+id/days1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBoxMonday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:hint="Consultation Price"
-                    android:inputType="number" />
+                    android:layout_marginBottom="8dp"
+                    android:text="Monday" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxTuesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Tuesday" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxWednesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Wednesday" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxThursday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Thursday" />
+
 
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/days2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:padding="7dp">
-
-                <EditText
-                    android:id="@+id/doctorCurrency"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkBoxFriday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:hint="Adresse"
-                    android:inputType="text" />
+                    android:layout_marginBottom="8dp"
+                    android:text="Friday" />
+                <CheckBox
+                    android:id="@+id/checkBoxSaturday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Saturday" />
 
-
+                <CheckBox
+                    android:id="@+id/checkBoxSunday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Sunday" />
             </LinearLayout>
 
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:padding="7dp">
+                android:gravity="left"
+                android:text="Hour of starting:" />
 
-                <EditText
+            <LinearLayout
+                android:layout_width="362dp"
+                android:layout_height="106dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
+                <NumberPicker
+                    android:id="@+id/hourStart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:hint="More info about pricing *"
-                    android:inputType="text" />
+                    android:text=":"
+                    android:textSize="34sp" />
 
+                <NumberPicker
+                    android:id="@+id/minuteStart"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="137dp"
-                android:gravity="center"
-                android:text="Attention!\nyour health center location is very important ! \n select the exact location by clicking on the button bellow"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginBottom="10sp"
-                android:padding="7dp">
+                android:gravity="left"
+                android:text="Hour of closing:" />
 
-                <ImageView
-                    android:id="@+id/imageViewProfile"
-                    android:layout_width="121dp"
-                    android:layout_height="114dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/locationn"
-                    android:clickable="true"
-                    android:contentDescription="Profile Picture"
-                    android:onClick="selectProfilePicture"
-                    android:scaleType="centerCrop" />
+            <LinearLayout
+                android:layout_width="362dp"
+                android:layout_height="106dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <NumberPicker
+                    android:id="@+id/hourEnd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/Location"
-                    android:layout_width="211dp"
-                    android:layout_height="42dp"
-                    android:gravity="center"
-                    android:text="Add Location"
-                    android:textColor="@color/blue"
-                    android:textSize="22sp"
-                    android:onClick="selectProfilePicture"
-                    android:textStyle="bold" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textSize="34sp" />
+
+                <NumberPicker
+                    android:id="@+id/minuteEnd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
 
-
-
+            <EditText
+                android:id="@+id/largeTextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:gravity="top"
+                android:layout_marginTop="16dp"
+                android:lines="5"
+                android:hint="Additional info... *"
+                android:layout_gravity="start|top"/>
             <Button
                 android:id="@+id/doctor_sign_in_button"
                 android:layout_width="200sp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+
+
                 android:background="@drawable/bg_btn_search_doc"
                 android:gravity="center"
-                android:text="Next >"
+                android:text="Submit>"
                 android:textStyle="bold" />
 
         </LinearLayout>

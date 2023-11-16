@@ -41,7 +41,8 @@ class CreateAccountDoc : AppCompatActivity() {
         btnNext.setOnClickListener {
             val intent = Intent(this, CreateAccountDoc2::class.java)
             startActivity(intent)
-        //
+        }
+            //
             imageViewProfile = findViewById(R.id.imageViewProfile)
             radioGroupGender = findViewById(R.id.radioGroupGender)
             radioButtonMale = findViewById(R.id.radioButtonMale)
@@ -58,8 +59,8 @@ class CreateAccountDoc : AppCompatActivity() {
                         }
                     }
                 }
-        }
 
+    }
         fun selectProfilePicture(view: View) {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             imagePickerLauncher.launch(intent)
@@ -73,5 +74,5 @@ class CreateAccountDoc : AppCompatActivity() {
             }
         }
 
-    }
+
 }

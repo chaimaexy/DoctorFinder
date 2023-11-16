@@ -156,28 +156,11 @@
 
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:padding="7dp">
 
-                <EditText
-                    android:id="@+id/doctor_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:hint="Add more info... *"
-                    android:inputType="textLongMessage"
-                    />
-
-
-            </LinearLayout>
 
 
             <Button
-                android:id="@+id/doctor_sign_in_button"
+                android:id="@+id/doctor_sign_in_button1"
                 android:layout_width="200sp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"

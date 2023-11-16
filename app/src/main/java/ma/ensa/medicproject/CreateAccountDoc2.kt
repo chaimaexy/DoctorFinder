@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.MultiAutoCompleteTextView
 import android.widget.Toast
@@ -21,12 +22,17 @@ class CreateAccountDoc2 : AppCompatActivity() {
         //
         val btnBack: ImageButton = findViewById(R.id.btnBack)
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, CreateAccountDoc::class.java)
             startActivity(intent)
         }
         val btnCancel: ImageButton = findViewById(R.id.btnCancel)
         btnCancel.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        val btnNext: Button = findViewById(R.id.doctor_sign_in_button1)
+        btnNext.setOnClickListener {
+            val intent = Intent(this, CreateAccoutDoc3::class.java)
             startActivity(intent)
         }
         //
