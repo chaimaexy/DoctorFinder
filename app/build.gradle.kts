@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -42,6 +43,7 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("com.google.firebase:firebase-storage:20.3.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -49,7 +51,14 @@ dependencies {
     implementation("com.google.android.libraries.places:places:2.5.0")
     implementation("com.google.android.libraries.places:places:2.7.0")
     implementation("com.google.android.libraries.places:places:3.2.0")
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
+    implementation ("com.squareup.picasso:picasso:2.8")
+    implementation("com.google.firebase:firebase-database")
 
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
 
 }

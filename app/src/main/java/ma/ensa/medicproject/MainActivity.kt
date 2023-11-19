@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -32,8 +31,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         Navigation.setNavigationItemSelectedListener(this)
+        //login status
 
-
+        //
         val imageButton: ImageButton = findViewById(R.id.imageButton)
 
         imageButton.setOnClickListener(View.OnClickListener {
@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     }
+
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
@@ -62,4 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         return false
     }
+
+
+
 }

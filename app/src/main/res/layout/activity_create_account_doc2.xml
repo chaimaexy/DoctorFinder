@@ -24,9 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <!-- Back button -->
-
-                <!-- Text in the center -->
 
                 <ImageButton
                     android:id="@+id/btnBack"
@@ -77,42 +74,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="14sp"
+            android:layout_marginBottom="50sp"
             android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="356dp"
-                android:layout_height="115dp"
-                android:src="@drawable/homeimg" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8sp"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Professionnel info"
-                android:textColor="@color/black"
-                android:textSize="17sp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:padding="7dp">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginBottom="50sp"
+                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/doctorName"
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="120dp"
+                    android:layout_height="98dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/homeimg" />
+
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="8sp"
                     android:layout_weight="3"
-                    android:hint="PMDC"
-                    android:inputType="text"
-                     />
-
-
+                    android:accessibilityLiveRegion="none"
+                    android:background="#21CFC2"
+                    android:backgroundTintMode="add"
+                    android:breakStrategy="high_quality"
+                    android:capitalize="none"
+                    android:contextClickable="false"
+                    android:cursorVisible="false"
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Step 2/4 : Professional info"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:emojiCompatEnabled="false" />
             </LinearLayout>
 
             <LinearLayout
@@ -120,38 +120,47 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
+                android:layout_marginBottom="15sp"
                 android:padding="7dp">
 
-                <MultiAutoCompleteTextView
-                    android:id="@+id/doctor_specialities"
-                    android:layout_width="match_parent"
+                <EditText
+                    android:id="@+id/doctorPMDC"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Select Specialities"
-                    android:completionThreshold="1"
+                    android:layout_weight="3"
+                    android:hint="numéro de licence médicale"
+                    android:inputType="text"
                     />
 
 
             </LinearLayout>
-            <Button
-                android:layout_width="wrap_content"
+
+            <Spinner
+                android:id="@+id/spinnerSpecialty"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="show input"
-                android:onClick="showInput"
-                />
+                android:layout_marginBottom="40dp"
+                android:prompt="@string/select_specialty"
+                android:spinnerMode="dropdown" />
+
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
+                android:layout_marginBottom="50dp"
                 android:padding="7dp">
 
                 <EditText
-
+                    android:id="@+id/doctorExperience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:hint="Experience years *"
-                    android:inputType="date"
+                    android:hint="Experience years(1 ,2,...) *"
+                    android:inputType="text"
                     />
 
 
@@ -170,6 +179,37 @@
                 android:gravity="center"
                 android:text="Next >"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewDoctorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor Name:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor Email:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor Password:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected gender:" />
+
+
+            <ImageView
+                android:id="@+id/imageViewSelectedImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
 
         </LinearLayout>
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -70,21 +69,40 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="356dp"
-                android:layout_height="115dp"
-                android:src="@drawable/homeimg" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8sp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="5dp"
-                android:text="Personnal info"
-                android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="120dp"
+                    android:layout_height="98dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/homeimg" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="8sp"
+                    android:layout_weight="3"
+                    android:accessibilityLiveRegion="none"
+                    android:background="#21CFC2"
+                    android:backgroundTintMode="add"
+                    android:breakStrategy="high_quality"
+                    android:capitalize="none"
+                    android:contextClickable="false"
+                    android:cursorVisible="false"
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Step 1/4 : Personnal info"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:emojiCompatEnabled="false" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,8 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:hint="Full name"
-                    android:inputType="text"
-                     />
+                    android:inputType="text" />
 
 
             </LinearLayout>
@@ -132,14 +149,15 @@
                 android:padding="7dp">
 
                 <EditText
-                    android:id="@+id/doctor_pass"
+                    android:id="@+id/doctorPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:hint="Password"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -157,7 +175,9 @@
 
 
             </LinearLayout>
+
             <RadioGroup
+
                 android:id="@+id/radioGroupGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -177,37 +197,39 @@
                     android:layout_height="wrap_content"
                     android:text="Female" />
             </RadioGroup>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="10sp"
-            android:padding="7dp">
 
-            <ImageView
-                android:id="@+id/imageViewProfile"
-                android:layout_width="119dp"
-                android:layout_height="116dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/add_a_photo"
-                android:clickable="true"
-                android:contentDescription="Profile Picture"
-                android:onClick="selectProfilePicture"
-                android:scaleType="centerCrop" />
-
-            <TextView
-                android:layout_width="211dp"
-                android:layout_height="42dp"
+                android:layout_marginBottom="10sp"
                 android:gravity="center"
-                android:text="Add profile picture"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:onClick="selectProfilePicture"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:padding="7dp">
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/imageViewProfile"
+                    android:layout_width="119dp"
+                    android:layout_height="116dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/add_a_photo"
+                    android:clickable="true"
+                    android:contentDescription="Profile Picture"
+                    android:onClick="selectProfilePicture"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:layout_width="211dp"
+                    android:layout_height="42dp"
+                    android:gravity="center"
+                    android:onClick="selectProfilePicture"
+                    android:text="Add profile picture"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
             <Button
                 android:id="@+id/doctor_sign_in_button1"
                 android:layout_width="200sp"

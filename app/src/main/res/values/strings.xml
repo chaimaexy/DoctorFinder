@@ -20,5 +20,22 @@
         <item>Casablanca</item>
         <item>Rabat</item>
         <item>Marrakech</item>
+        <item>Fes</item>
+        <item>Tangier</item>
+        <item>Agadir</item>
+        <item>Meknes</item>
+        <item>Oujda</item>
+        <item>Kenitra</item>
+        <item>Tetouan</item>
+        <item>Essaouira</item>
+        <item>Nador</item>
+        <item>El Jadida</item>
+        <item>Khouribga</item>
+        <item>Beni Mellal</item>
+        <item>Errachidia</item>
+        <item>Taza</item>
+        <item>Settat</item>
+        <item>Larache</item>
+        <!-- Add more cities as needed -->
     </string-array>
 </resources>

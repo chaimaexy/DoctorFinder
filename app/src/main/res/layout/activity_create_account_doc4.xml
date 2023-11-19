@@ -80,21 +80,41 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="356dp"
-                android:layout_height="115dp"
-                android:src="@drawable/homeimg" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8sp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:padding="5dp"
-                android:text="Working Hours"
-                android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:layout_marginBottom="50sp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="120dp"
+                    android:layout_height="98dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/homeimg" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="8sp"
+                    android:layout_weight="3"
+                    android:accessibilityLiveRegion="none"
+                    android:background="#21CFC2"
+                    android:backgroundTintMode="add"
+                    android:breakStrategy="high_quality"
+                    android:capitalize="none"
+                    android:contextClickable="false"
+                    android:cursorVisible="false"
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Step 4/4 : Working Hours"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:emojiCompatEnabled="false" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -105,7 +125,7 @@
 
             <LinearLayout
                 android:id="@+id/days1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal">
@@ -248,6 +268,82 @@
                 android:lines="5"
                 android:hint="Additional info... *"
                 android:layout_gravity="start|top"/>
+
+            <TextView
+                android:id="@+id/textViewDoctorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor Name:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor Email:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor Password:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected gender:" />
+
+
+            <ImageView
+                android:id="@+id/imageViewSelectedImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textViewPMDC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected PMDC:" />
+            <TextView
+                android:id="@+id/textViewDoctorExperience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected Experience:" />
+            <TextView
+                android:id="@+id/textViewDoctorSpeciality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected Speciality:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected price:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorAdresse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected adresse:" />
+            <TextView
+            android:id="@+id/textViewDoctorPriceInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selected price info:" />
+
+
+            <TextView
+                android:id="@+id/textViewDoctorLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected Location:" />
+            <TextView
+                android:id="@+id/textViewDoctorCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected City:" />
             <Button
                 android:id="@+id/doctor_sign_in_button"
                 android:layout_width="200sp"

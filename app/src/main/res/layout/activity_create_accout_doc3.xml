@@ -80,38 +80,40 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="356dp"
-                android:layout_height="115dp"
-                android:src="@drawable/homeimg" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8sp"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Health center info"
-                android:textColor="@color/black"
-                android:textSize="17sp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:padding="7dp">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginBottom="50sp"
+                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/doctorprice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="120dp"
+                    android:layout_height="98dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/homeimg" />
+
+                <TextView
+                    android:layout_width="268dp"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="8sp"
                     android:layout_weight="3"
-                    android:hint="Consultation Price"
-                    android:inputType="number" />
-
-
+                    android:accessibilityLiveRegion="none"
+                    android:background="#21CFC2"
+                    android:backgroundTintMode="add"
+                    android:breakStrategy="high_quality"
+                    android:capitalize="none"
+                    android:contextClickable="false"
+                    android:cursorVisible="false"
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Step 3/4 : Health center information"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    app:emojiCompatEnabled="false" />
             </LinearLayout>
 
             <LinearLayout
@@ -119,10 +121,47 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
+
                 android:padding="7dp">
 
                 <EditText
-                    android:id="@+id/doctorCurrency"
+                    android:id="@+id/doctorprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_marginBottom="15dp"
+                    android:hint="Consultation Price"
+                    android:inputType="number" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/location" />
+
+                <Spinner
+                    android:id="@+id/spinnerCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/select_Location" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:padding="7dp">
+
+                <EditText
+                    android:id="@+id/doctorAdresse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -141,7 +180,7 @@
                 android:padding="7dp">
 
                 <EditText
-
+                    android:id="@+id/consoltPriceInfos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -156,10 +195,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="137dp"
                 android:gravity="center"
-                android:text="Attention!\nyour health center location is very important ! \n select the exact location by clicking on the button bellow"
-                android:textSize="20sp"
+                android:text="Attention!  Your health center location is very important ! Select the exact location by clicking on the button bellow"
+                android:textSize="18sp"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:padding="4sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,30 +211,75 @@
 
                 <ImageView
                     android:id="@+id/imageViewProfile"
-                    android:layout_width="121dp"
-                    android:layout_height="114dp"
+                    android:layout_width="110dp"
+                    android:layout_height="100dp"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/locationn"
+                    android:background="@drawable/add_location"
                     android:clickable="true"
                     android:contentDescription="Profile Picture"
-                    android:onClick="selectProfilePicture"
+                    android:onClick="selectCurrentLocation"
                     android:scaleType="centerCrop" />
 
-                <TextView
+                <EditText
                     android:id="@+id/Location"
-                    android:layout_width="211dp"
-                    android:layout_height="42dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Add Location"
-                    android:textColor="@color/blue"
-                    android:textSize="22sp"
-                    android:onClick="selectProfilePicture"
+                    android:text=""
+                    android:editable="false"
+                    android:lines="3"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textViewDoctorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor Name:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor Email:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor Password:" />
+
+            <TextView
+                android:id="@+id/textViewDoctorGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected gender:" />
 
 
+            <ImageView
+                android:id="@+id/imageViewSelectedImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textViewPMDC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected PMDC:" />
+            <TextView
+                android:id="@+id/textViewDoctorExperience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected Experience:" />
+            <TextView
+                android:id="@+id/textViewDoctorSpeciality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selected Speciality:" />
 
             <Button
                 android:id="@+id/doctor_sign_in_button"

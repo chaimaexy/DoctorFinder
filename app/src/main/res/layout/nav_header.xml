@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:background="@color/blue"
     android:gravity="center"
-
+    tools:context=".NavHeader"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,6 +15,7 @@
         android:layout_marginTop="70dp">
 
         <ImageView
+            android:id="@+id/profileImage"
             android:layout_width="67dp"
             android:layout_height="46dp"
             android:layout_gravity="center_vertical"
@@ -42,13 +44,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/loginMenu"
+        android:id="@+id/Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#27114A51"
         android:gravity="center|center_vertical"
         android:rotation="0"
-        android:text="Sign up"
+        android:text="Login here"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#0B4E48"
@@ -56,4 +58,5 @@
         android:textColorLink="#EAEAEA"
         app:cornerRadius="9dp"
         app:iconTint="#9C2323" />
+
 </LinearLayout>
