@@ -112,7 +112,7 @@
                     android:text="Step 4/4 : Working Hours"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                     android:textColor="@color/black"
-                    android:textSize="17sp"
+                    android:textSize="13sp"
                     app:emojiCompatEnabled="false" />
             </LinearLayout>
 

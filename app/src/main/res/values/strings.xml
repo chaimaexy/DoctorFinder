@@ -10,6 +10,14 @@
     <string name="save_schedule">Save Schedule</string>
     <string name="select_specialty">Select Speciality</string>
     <string name="select_Location">City</string>
+    <string name="patient_space">Patient Space</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="your_are_a">Your are a :</string>
+    <string name="doctor_space">Doctor Space</string>
+    <string name="create_account"><![CDATA[Create Account >]]></string>
     <string-array name="specialties_array">
         <item>Cardiologist</item>
         <item>Dermatologist</item>

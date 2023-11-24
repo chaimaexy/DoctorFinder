@@ -31,13 +31,13 @@ class FirebaseImageUploader {
         val imageName = "image_${imagePMDC}.jpg"
 
         // Create a reference to the Firebase Storage path
-        val imageRef = storageReference.child("images").child(imageName)
+        val imageRef = storageReference.child("images/").child(imageName)
 
         // Load image into imageView using Picasso
         imageRef.downloadUrl.addOnSuccessListener { uri ->
             Picasso.get().load(uri).into(imageView)
         }.addOnFailureListener {
-            // Handle failure to download image
+            imageView.setImageResource(R.drawable.homeimg)
         }
     }
 }

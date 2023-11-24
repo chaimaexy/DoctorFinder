@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".CreateAccountDoc2">
+    tools:context=".CreateAccountPatient">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -18,44 +17,37 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary">
+            android:background="?attr/colorPrimary"
+            android:padding="0sp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <!-- Back button -->
 
-                <ImageButton
-                    android:id="@+id/btnBack"
-                    android:layout_width="73dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="322dp"
-                    android:layout_marginBottom="-2dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:src="@drawable/back" />
 
+                <!-- Text in the center -->
                 <TextView
                     android:id="@+id/toolbarTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Are you a Doctor?"
+                    android:text="Are you a Patient?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
                 <ImageButton
-                    android:id="@+id/btnCancel"
-                    android:layout_width="47dp"
-                    android:layout_height="41dp"
+                    android:id="@+id/btnCancelP"
+                    android:layout_width="79dp"
+                    android:layout_height="49dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="56dp"
+                    android:layout_marginStart="34dp"
                     android:layout_marginTop="7dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginBottom="0dp"
                     android:layout_toEndOf="@+id/toolbarTitle"
                     android:background="?android:attr/selectableItemBackground"
                     android:src="@drawable/cancel" />
@@ -74,8 +66,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="14sp"
-            android:layout_marginBottom="50sp"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -83,7 +73,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:layout_marginBottom="50sp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -91,7 +80,7 @@
                     android:layout_width="120dp"
                     android:layout_height="98dp"
                     android:layout_weight="1"
-                    android:src="@drawable/homeimg" />
+                    android:src="@drawable/passion" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -99,7 +88,7 @@
                     android:layout_marginTop="8sp"
                     android:layout_weight="3"
                     android:accessibilityLiveRegion="none"
-                    android:background="#21CFC2"
+                    android:background="#8B4A37"
                     android:backgroundTintMode="add"
                     android:breakStrategy="high_quality"
                     android:capitalize="none"
@@ -108,7 +97,7 @@
                     android:fontFamily="monospace"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Step 2/4 : Professional info"
+                    android:text="Personnal info"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                     android:textColor="@color/black"
                     android:textSize="13sp"
@@ -120,96 +109,77 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="15sp"
                 android:padding="7dp">
 
                 <EditText
-                    android:id="@+id/doctorPMDC"
+                    android:id="@+id/patientName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:hint="numéro de licence médicale"
-                    android:inputType="text"
-                    />
+                    android:hint="User name"
+                    android:inputType="text" />
 
 
             </LinearLayout>
-
-            <Spinner
-                android:id="@+id/spinnerSpecialty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                android:prompt="@string/select_specialty"
-                android:spinnerMode="dropdown" />
-
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal"
-                android:layout_marginBottom="50dp"
                 android:padding="7dp">
 
                 <EditText
-                    android:id="@+id/doctorExperience"
+                    android:id="@+id/patientEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:hint="Experience years(1 ,2,...) *"
-                    android:inputType="text"
-                    />
+                    android:hint="Enter email : abc@xyz.com"
+                    android:inputType="textEmailAddress" />
 
 
             </LinearLayout>
 
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/patientPasswordLayout"
+                app:endIconMode="password_toggle"
+                app:startIconDrawable="@drawable/lock">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/patientPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:endIconMode="password_toggle"
+                android:id="@+id/patientPasswordConfirmLayout"
+                app:startIconDrawable="@drawable/lock">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/patientPasswordConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirm password" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <Button
-                android:id="@+id/doctor_sign_in_button1"
+                android:id="@+id/patient_sign_in_button1"
                 android:layout_width="200sp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-
-
+                android:layout_marginTop="13sp"
                 android:background="@drawable/bg_btn_search_doc"
+                android:backgroundTint="#8A685D"
                 android:gravity="center"
                 android:text="Next >"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textViewDoctorName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Doctor Name:" />
-
-            <TextView
-                android:id="@+id/textViewDoctorEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Doctor Email:" />
-
-            <TextView
-                android:id="@+id/textViewDoctorPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Doctor Password:" />
-
-            <TextView
-                android:id="@+id/textViewDoctorGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected gender:" />
-
-
-            <ImageView
-                android:id="@+id/imageViewSelectedImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
 
         </LinearLayout>
 

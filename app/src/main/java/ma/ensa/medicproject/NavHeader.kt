@@ -1,5 +1,6 @@
 package ma.ensa.medicproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -15,7 +16,12 @@ class NavHeader : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.nav_header)
 
+        Login = findViewById(R.id.Login)
 
+        Login.setOnClickListener {
+            val intent = Intent(this , AuthChoice::class.java)
+            startActivity(intent)
+        }
 
     }
 

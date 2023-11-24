@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#E1F3F3"
 
-    android:backgroundTint="#B7DCE3"
+    android:backgroundTint="#DEEFF3"
     tools:context=".MainActivity">
 
     <com.google.android.material.navigation.NavigationView
@@ -59,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
@@ -87,7 +88,7 @@
                     android:paddingHorizontal="10dp"
                     android:text="SELECT SEARCH AREA"
                     android:textAllCaps="false"
-                    android:background="@drawable/bg_btn_search_location"
+                    android:background="@drawable/bg_btn_search_doc"
 
 
                     />
@@ -98,7 +99,7 @@
                     android:layout_height="59dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="50dp"
-                    android:background="@drawable/bg_btn_search_location"
+                    android:background="@drawable/bg_btn_search_doc"
                     android:drawableStart="@drawable/person"
                     android:drawableEnd="@drawable/go"
                     android:paddingHorizontal="20dp"
@@ -111,7 +112,7 @@
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
-                    android:layout_height="109dp"
+                    android:layout_height="130dp"
                     android:fontFamily="serif"
                     android:text="You are a Doctor?\n Create a publicity for your Healthcare Office"
                     android:textAlignment="center"
@@ -120,17 +121,27 @@
                     android:textColorHighlight="#A82828"
                     android:textDirection="firstStrongRtl"
                     android:textIsSelectable="false"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
+                    android:gravity="center"
                     android:textStyle="bold"
                     android:visibility="visible" />
 
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="318dp"
-                    android:layout_height="132dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/home" />
 
+                <Button
+                    android:id="@+id/imageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="59dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="50dp"
+                    android:background="@drawable/bg_btn_search_location"
+                    android:drawableStart="@drawable/person_add"
+                    android:drawableEnd="@drawable/go"
+                    android:paddingHorizontal="20dp"
+                    android:text="CREATE ACCOUNT"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+
+                    />
 
 
 

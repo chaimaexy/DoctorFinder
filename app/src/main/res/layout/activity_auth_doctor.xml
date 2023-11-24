@@ -18,7 +18,7 @@
         <LinearLayout
 
             android:orientation="vertical"
-
+            android:gravity="center"
             android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -27,73 +27,63 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Doctor Space"
+                android:text="@string/doctor_space"
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:padding="5dp"
                 android:textStyle="bold"
                 android:textSize="34sp"/>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:padding="7dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/person">
 
-                <ImageView
-                    android:layout_width="5dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/person"
-                    app:tint="@color/black" />
-
-                <EditText
-                    android:id="@+id/doctor_user_for_sign_in"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/doctorEmail"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:hint="Username"
-                    android:inputType="textEmailAddress"
-                    android:textColorHint="@color/black" />
+                    android:hint="@string/email"
+                    android:inputType="text|textEmailAddress" />
 
-            </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:endIconMode="password_toggle"
+                    app:startIconDrawable="@drawable/lock">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:padding="7dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/lock"
-                    app:tint="@color/black" />
-
-                <EditText
-                    android:id="@+id/doctor_pass_for_sign_in"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:textColorHint="@color/black" />
-
-            </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/password" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <Button
                 android:id="@+id/doctor_sign_in_button"
-                android:layout_width="372dp"
+                android:layout_width="117dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/bg_btn_search_doc"
-                android:text="Login"
+                android:text="@string/login"
 
                 android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/CreateAccount"
+                android:textSize="18sp"
+                android:textColor="@color/blue"
+                android:textStyle="italic"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/create_account"
+                />
 
 
         </LinearLayout>

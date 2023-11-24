@@ -20,6 +20,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
 
 class CreateAccountDoc : AppCompatActivity() {
@@ -28,8 +29,8 @@ class CreateAccountDoc : AppCompatActivity() {
 
     private lateinit var doctorName: EditText
     private lateinit var doctorEmail: EditText
-    private lateinit var doctorPassword: EditText
-    private lateinit var doctorPasswordConfirm: EditText
+    private lateinit var doctorPassword: TextInputEditText
+    private lateinit var doctorPasswordConfirm: TextInputEditText
     private lateinit var imagePickerLauncher: ActivityResultLauncher<Intent>
     private lateinit var selectedImage: Uri
     private lateinit var selectedGender : String
@@ -87,7 +88,7 @@ class CreateAccountDoc : AppCompatActivity() {
         btnNext.setOnClickListener {
             if(doctorName.text.isNotEmpty() &&
                 doctorEmail.text.isNotEmpty() &&
-                doctorPassword.text.isNotEmpty() &&
+                doctorPassword.text.toString().isNotBlank() &&
                 ::selectedImage.isInitialized&& // Check if lateinit property is initialized
                 selectedImage != null &&
                 radioGroupGender.checkedRadioButtonId != -1
