@@ -1,6 +1,5 @@
 package ma.ensa.medicproject
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -75,6 +74,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         loginButton.setOnClickListener {
             val intent = Intent(this , AuthChoice::class.java)
             startActivity(intent)
+        }
+        //search by speciality
+        val searchDoc: Button = findViewById(R.id.searchDoc)
+
+        searchDoc.setOnClickListener {
+            val intent1 = Intent(this , SearchDoctorBySpeciality::class.java)
+            startActivity(intent1)
         }
 
 

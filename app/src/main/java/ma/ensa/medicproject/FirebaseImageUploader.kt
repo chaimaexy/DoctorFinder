@@ -2,6 +2,10 @@ package ma.ensa.medicproject
 import android.net.Uri
 import android.widget.ImageView
 import android.widget.Toast
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
@@ -26,18 +30,19 @@ class FirebaseImageUploader {
         }
     }
 
-    fun loadImage(imagePMDC: String, imageView: ImageView) {
-        // Generate the image name based on the imagePMDC
+    fun getImageDownloadUrl(imagePMDC: String, onSuccess: (Uri) -> Unit, onFailure: () -> Unit) {
         val imageName = "image_${imagePMDC}.jpg"
+        val imageRef = storageReference.child("images/$imageName")
 
-        // Create a reference to the Firebase Storage path
-        val imageRef = storageReference.child("images/").child(imageName)
-
-        // Load image into imageView using Picasso
-        imageRef.downloadUrl.addOnSuccessListener { uri ->
-            Picasso.get().load(uri).into(imageView)
+        imageRef.downloadUrl.addOnSuccessListener {
+            onSuccess.invoke(it)
         }.addOnFailureListener {
-            imageView.setImageResource(R.drawable.homeimg)
+            onFailure.invoke()
         }
     }
+
+
+
+
+
 }
