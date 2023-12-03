@@ -12,9 +12,10 @@ import ma.ensa.medicproject.Specialities
 
 class DoctorAdapter(
     private val doctorsList: MutableList<Doctor>,
-    private val specialitiesList: List<Specialities>
-)
-    : RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
+    private val specialitiesList: List<Specialities>,
+    private val itemClickListener: (Doctor) -> Unit
+
+): RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
 
     class DoctorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val doctorImageView: ImageView = itemView.findViewById(R.id.doctorImage)
@@ -46,8 +47,7 @@ class DoctorAdapter(
             holder.specialityTextView.text = associatedSpeciality.specName
         }
 
-        // Load doctor image using Picasso or any other image loading library
-        // Assuming the Doctor class has an appropriate method to get doctorImageUri
+
         val firebaseImageUploader = FirebaseImageUploader()
         firebaseImageUploader.getImageDownloadUrl(currentDoctor.pmdc,
             { uri ->
@@ -56,6 +56,12 @@ class DoctorAdapter(
             {
                 holder.doctorImageView.setImageResource(R.drawable.person)            }
         )
+        // Set click listener for the item
+        holder.itemView.setOnClickListener {
+            // Invoke the provided click listener with the clicked doctor
+            itemClickListener.invoke(currentDoctor)
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -67,6 +73,9 @@ class DoctorAdapter(
         doctorsList.addAll(newList)
         notifyDataSetChanged()
     }
+
+
+
 
 }
 

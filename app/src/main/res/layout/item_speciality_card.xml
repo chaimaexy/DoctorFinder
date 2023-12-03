@@ -19,7 +19,7 @@
             android:gravity="center"
             android:paddingHorizontal="25dp"
             android:paddingVertical="15dp"
-            android:background="@drawable/card1_style"
+            android:background="@drawable/card2_style"
             android:orientation="vertical">
 
             <ImageView

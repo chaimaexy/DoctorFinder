@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class SpecialitiesAdapter(private val specialitiesList: List<Specialities>) : RecyclerView.Adapter<SpecialitiesAdapter.ViewHolder>() {
+class SpecialitiesAdapter(private val specialitiesList: List<Specialities>,
+                          private val onSpecialityClickListener: (Specialities) -> Unit
+) : RecyclerView.Adapter<SpecialitiesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_speciality_card, parent, false)
@@ -23,6 +25,11 @@ class SpecialitiesAdapter(private val specialitiesList: List<Specialities>) : Re
 
         // Load and display the image using Picasso
         Picasso.get().load(speciality.specImage).into(holder.specImage)
+
+        // Set up a click listener for each item
+        holder.itemView.setOnClickListener {
+            onSpecialityClickListener.invoke(speciality)
+        }
     }
 
     override fun getItemCount(): Int {

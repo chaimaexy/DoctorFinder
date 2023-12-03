@@ -1,6 +1,7 @@
 package ma.ensa.medicproject;
 
 import DoctorAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
@@ -25,6 +26,13 @@ class SearchDoctorBySpeciality : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_doctor_by_speciality)
 
+
+        // RecyclerView for Doctors
+        val recyclerViewDoctors: RecyclerView = findViewById(R.id.recyclerViewDoctors)
+        val layoutManagerDoctors = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerViewDoctors.layoutManager = layoutManagerDoctors
+
+
         // RecyclerView for Specialities
         val recyclerViewSpecialities: RecyclerView = findViewById(R.id.recyclerViewSpecialities)
         val layoutManagerSpecialities = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -37,6 +45,8 @@ class SearchDoctorBySpeciality : AppCompatActivity() {
         databaseReferenceSpecialities.addListenerForSingleValueEvent(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+
                 for (snapshot in dataSnapshot.children) {
                     val specName = snapshot.child("specName").getValue(String::class.java)
                     val specId = snapshot.child("specId").getValue(Int::class.java)
@@ -50,7 +60,15 @@ class SearchDoctorBySpeciality : AppCompatActivity() {
 
                 // Now, specialitiesList contains your Speciality objects
                 // You can use this list to populate your RecyclerView adapter
-                val adapter = SpecialitiesAdapter(specialitiesList)
+                val adapter = SpecialitiesAdapter(specialitiesList) { selectedSpeciality ->
+                    // Handle the click event here
+                    // For example, you can filter the doctors based on the selected speciality
+                    val filteredDoctorsList = originalDoctorsList.filter { it.specialityId == selectedSpeciality.specId }
+
+                    // Update the adapter with the filtered list
+                    (recyclerViewDoctors.adapter as DoctorAdapter).updateList(filteredDoctorsList)
+                }
+
                 recyclerViewSpecialities.adapter = adapter
             }
 
@@ -63,10 +81,7 @@ class SearchDoctorBySpeciality : AppCompatActivity() {
 
 
 
-        // RecyclerView for Doctors
-        val recyclerViewDoctors: RecyclerView = findViewById(R.id.recyclerViewDoctors)
-        val layoutManagerDoctors = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerViewDoctors.layoutManager = layoutManagerDoctors
+
 
         // Fetch Doctors from Database
         val databaseReferenceDoctors = FirebaseDatabase.getInstance().getReference("Doctors")
@@ -85,8 +100,12 @@ class SearchDoctorBySpeciality : AppCompatActivity() {
                     }
                 }
 
-                val adapter = DoctorAdapter(doctorsList, specialitiesList)
-                recyclerViewDoctors.adapter = adapter
+                val doctorAdapter = DoctorAdapter(doctorsList, specialitiesList) { clickedDoctor ->
+                    val intent = Intent(this@SearchDoctorBySpeciality, DoctorInfoActivity::class.java)
+                    intent.putExtra("doctor", clickedDoctor)
+                    startActivity(intent)
+                }
+                recyclerViewDoctors.adapter = doctorAdapter
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

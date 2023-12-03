@@ -4,14 +4,13 @@
     <item>
         <shape android:shape="rectangle">
 
-            <solid android:color="#000000" /> <!-- White background color -->
-            <corners android:radius="20dp" />
+            <corners android:radius="50dp" />
         </shape>
     </item>
     <!-- Border -->
     <item android:right="1dp" android:left="1dp" android:top="1dp" android:bottom="1dp">
         <shape android:shape="rectangle">
-            <gradient android:startColor="#FFFFFF" android:endColor="#FFFFFF" android:angle="130"/>
+            <gradient android:startColor="#AFD5FC" android:endColor="#2F93FB" android:angle="90"/>
 
             <corners android:radius="20dp" />
         </shape>
