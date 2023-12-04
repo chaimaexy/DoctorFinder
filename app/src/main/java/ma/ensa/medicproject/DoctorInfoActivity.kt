@@ -62,12 +62,15 @@ class DoctorInfoActivity : AppCompatActivity() {
 
         doctorImage = findViewById(R.id.DoctorImage)
         firebaseImageUploader = FirebaseImageUploader()
-
+        val isLoggedIn = intent.getIntExtra("logged", 0)
+        val email = intent.getStringExtra("email" )
 
         //
         backButton =  findViewById(R.id.back)
         backButton.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, SearchDoctorBySpeciality::class.java)
+            intent.putExtra("email", email)
+            intent.putExtra("logged", isLoggedIn)
             startActivity(intent)
         })
         // Get doctor information from intent

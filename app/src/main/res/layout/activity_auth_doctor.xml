@@ -62,6 +62,18 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
+
+            <TextView
+                android:id="@+id/CreateAccountDoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/blue"
+                android:textStyle="italic"
+                android:fontFamily="sans-serif-condensed"
+                android:text="@string/create_account"
+                />
             <Button
                 android:id="@+id/doctor_sign_in_button"
                 android:layout_width="117dp"
@@ -72,20 +84,6 @@
                 android:text="@string/login"
 
                 android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:id="@+id/CreateAccount"
-                android:textSize="18sp"
-                android:textColor="@color/blue"
-                android:textStyle="italic"
-                android:fontFamily="sans-serif-condensed"
-                android:text="@string/create_account"
-                />
-
-
         </LinearLayout>
 
     </ScrollView>

@@ -6,11 +6,12 @@
 
             <corners android:radius="50dp" />
         </shape>
+
     </item>
     <!-- Border -->
     <item android:right="1dp" android:left="1dp" android:top="1dp" android:bottom="1dp">
         <shape android:shape="rectangle">
-            <gradient android:startColor="#AFD5FC" android:endColor="#2F93FB" android:angle="90"/>
+            <gradient android:startColor="#00AFD5FC" android:endColor="#B9BED2" android:angle="90"/>
 
             <corners android:radius="20dp" />
         </shape>

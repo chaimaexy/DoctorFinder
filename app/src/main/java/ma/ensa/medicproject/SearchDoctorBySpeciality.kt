@@ -4,11 +4,22 @@ import DoctorAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -19,20 +30,73 @@ import ma.ensa.medicproject.Specialities
 import ma.ensa.medicproject.SpecialitiesAdapter
 import java.util.Locale
 
-class SearchDoctorBySpeciality : AppCompatActivity() {
+class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private var originalDoctorsList: MutableList<Doctor> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_doctor_by_speciality)
 
+        //menu--------------------
+        val drawer: DrawerLayout = findViewById(R.id.drawerLayout)
+        val Navigation: NavigationView = findViewById(R.id.nav_view)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        Navigation.bringToFront()
+        val toggle = ActionBarDrawerToggle(
+            this,
+            drawer,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        drawer.addDrawerListener(toggle)
+        toggle.syncState()
+        Navigation.setNavigationItemSelectedListener(this)
+        //-------------------------------
+        //login status
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        val headerView = navigationView.getHeaderView(0)
+        val menu = navigationView.menu
+
+        val isLoggedIn = intent.getIntExtra("logged", 0)
+        val email = intent.getStringExtra("email" )
+        //-----------------------------
 
         // RecyclerView for Doctors
         val recyclerViewDoctors: RecyclerView = findViewById(R.id.recyclerViewDoctors)
         val layoutManagerDoctors = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerViewDoctors.layoutManager = layoutManagerDoctors
 
+        //------------------------------
+        if (email != null) {
 
+
+
+            //menu stuff
+            headerView.findViewById<TextView>(R.id.identif).text ="$email"
+            headerView.findViewById<Button>(R.id.Login).visibility =View.GONE
+            // Update menu items based on login status
+            menu.findItem(R.id.ProfileDoctor).isVisible = true
+            menu.findItem(R.id.logout).isVisible = true
+
+        }else{
+
+            headerView.findViewById<TextView>(R.id.identif).text = "Doctor Finder"
+            headerView.findViewById<Button>(R.id.Login).visibility =View.VISIBLE
+            val loginButton: Button = headerView.findViewById(R.id.Login)
+            headerView.setOnClickListener {
+            }
+            loginButton.setOnClickListener {
+
+                val intent2 = Intent(this , AuthChoice::class.java)
+                startActivity(intent2)
+            }
+            menu.findItem(R.id.ProfileDoctor).isVisible = false
+            menu.findItem(R.id.logout).isVisible = false
+
+        }
+        //--------------------------------
         // RecyclerView for Specialities
         val recyclerViewSpecialities: RecyclerView = findViewById(R.id.recyclerViewSpecialities)
         val layoutManagerSpecialities = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
@@ -58,14 +122,12 @@ class SearchDoctorBySpeciality : AppCompatActivity() {
                     }
                 }
 
-                // Now, specialitiesList contains your Speciality objects
-                // You can use this list to populate your RecyclerView adapter
+
                 val adapter = SpecialitiesAdapter(specialitiesList) { selectedSpeciality ->
-                    // Handle the click event here
-                    // For example, you can filter the doctors based on the selected speciality
+
                     val filteredDoctorsList = originalDoctorsList.filter { it.specialityId == selectedSpeciality.specId }
 
-                    // Update the adapter with the filtered list
+
                     (recyclerViewDoctors.adapter as DoctorAdapter).updateList(filteredDoctorsList)
                 }
 
@@ -77,11 +139,6 @@ class SearchDoctorBySpeciality : AppCompatActivity() {
                 Log.e("Firebase", "Error reading specialities data", databaseError.toException())
             }
         })
-
-
-
-
-
 
         // Fetch Doctors from Database
         val databaseReferenceDoctors = FirebaseDatabase.getInstance().getReference("Doctors")
@@ -103,6 +160,8 @@ class SearchDoctorBySpeciality : AppCompatActivity() {
                 val doctorAdapter = DoctorAdapter(doctorsList, specialitiesList) { clickedDoctor ->
                     val intent = Intent(this@SearchDoctorBySpeciality, DoctorInfoActivity::class.java)
                     intent.putExtra("doctor", clickedDoctor)
+                    intent.putExtra("email", email)
+                    intent.putExtra("logged", isLoggedIn)
                     startActivity(intent)
                 }
                 recyclerViewDoctors.adapter = doctorAdapter
@@ -130,4 +189,24 @@ class SearchDoctorBySpeciality : AppCompatActivity() {
             (recyclerViewDoctors.adapter as DoctorAdapter).updateList(filteredDoctorsList)
         }
     }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            R.id.home -> {
+
+            }
+            R.id.logout -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, MainActivity::class.java)
+
+                intent.putExtra("logged", 0)
+                startActivity(intent)
+            }
+        }
+        val drawer: DrawerLayout = findViewById(R.id.drawerLayout)
+        drawer.closeDrawer(GravityCompat.START)
+
+        return false
+    }
+
 }

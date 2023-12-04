@@ -2,6 +2,8 @@ package ma.ensa.medicproject
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -23,6 +25,7 @@ class CreateAccountPatient : AppCompatActivity() {
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var btnNext: Button
+    private lateinit var cancel: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,12 @@ class CreateAccountPatient : AppCompatActivity() {
         btnNext.setOnClickListener {
             CreateUser()
            
+        }
+
+        cancel = findViewById(R.id.btnCancelP)
+        cancel.setOnClickListener {
+            val intent = Intent(this, AuthUser::class.java)
+            startActivity(intent)
         }
     }
 
@@ -66,9 +75,37 @@ class CreateAccountPatient : AppCompatActivity() {
 
         // Create a User object
         val user = User(name, email, password)
-        savePatientToFirebase(email , password )
-        // Save the user object to Firebase Realtime Database
-        saveUserToDatabase(user)
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Account creation successful
+                    val firebaseUser: FirebaseUser? = mAuth.currentUser
+                    if (firebaseUser != null) {
+                        // Save the user object to Firebase Realtime Database
+                        saveUserToDatabase(user)
+
+                        // Inform the user about successful account creation
+                        Toast.makeText(
+                            baseContext, "Account creation successful.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        // Redirect to your desired activity
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("logged", 1)
+                        intent.putExtra("email", email)
+                        startActivity(intent)
+
+                    }
+                } else {
+                    // If account creation fails, display a message to the user.
+                    Toast.makeText(
+                        baseContext, "Account creation failed: ${task.exception?.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
 
         // Cancel
         val btnCancel: ImageButton = findViewById(R.id.btnCancelP)
@@ -78,49 +115,10 @@ class CreateAccountPatient : AppCompatActivity() {
         }
     }
 
-    private fun savePatientToFirebase(email: String, password: String) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Account creation successful
-                    val firebaseUser: FirebaseUser? = mAuth.currentUser
-                    if (firebaseUser != null) {
-                        // Do something with the user (optional)
-                        Toast.makeText(
-                            baseContext, "Authentication success.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                    }
-                } else {
-                    // If account creation fails, display a message to the user.
-                    Toast.makeText(
-                        baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-    }
-
     private fun saveUserToDatabase(user: User) {
-
-        val database = FirebaseDatabase.getInstance()
-        val reference = database.getReference("Users")
-
-        // Generate a unique key for the  entry
-        val PatientKey = reference.push().key
-        if (PatientKey != null) {
-            reference.child(PatientKey).setValue(user)
-            Toast.makeText(this, "Your Account is Created", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MainActivity::class.java)
-
-            intent.putExtra("logged", 2)
-            intent.putExtra("PatientName", name)
-            intent.putExtra("PatientPassword", password)
-
-            startActivity(intent)
-        } else {
-            Toast.makeText(this, "Error generating key", Toast.LENGTH_SHORT).show()
-        }
+        // Save the user data under the "Patients" node in Firebase Realtime Database
+        mDatabase.child("Users").push().setValue(user)
     }
+
+
 }

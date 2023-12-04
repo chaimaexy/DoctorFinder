@@ -17,10 +17,14 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
-    private lateinit var imageButton: Button
-    private lateinit var textView3: TextView
+    private lateinit var CreateAccountButton: Button
+    private lateinit var CreateAccountText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,16 +33,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val drawer: DrawerLayout = findViewById(R.id.drawerLayout)
         val Navigation: NavigationView = findViewById(R.id.nav_view)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
-        // Set up navigation header
-
-
-
-
-
-
         setSupportActionBar(toolbar)
-
-        Navigation.bringToFront()
+       Navigation.bringToFront()
         val toggle = ActionBarDrawerToggle(
             this,
             drawer,
@@ -48,84 +44,71 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         drawer.addDrawerListener(toggle)
         toggle.syncState()
-
         Navigation.setNavigationItemSelectedListener(this)
-        imageButton = findViewById(R.id.imageButton)
-        textView3 = findViewById(R.id.textView3)
+
+
+        CreateAccountButton = findViewById(R.id.imageButton)
+        CreateAccountText = findViewById(R.id.textView3)
+
+
         //login status
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         val headerView = navigationView.getHeaderView(0)
-        val profileImage = headerView.findViewById<ImageView>(R.id.profileImage)
         val menu = navigationView.menu
 
-        val isLoggedIn = intent.getIntExtra("logged", 0) == 1
-        //
-        val isLoggedInPatient = intent.getIntExtra("logged", 0) == 2
-        //
-        val doctorName = intent.getStringExtra("doctorName")
-        val doctorPMDC = intent.getStringExtra("doctorPMDC")
+        val isLoggedIn = intent.getIntExtra("logged", 0)
+        val email = intent.getStringExtra("email" )
 
-        val PatientName = intent.getStringExtra("PatientName")
-        val PatientPassword = intent.getStringExtra("PatientPassword")
 
-        //login button in Header
-        val loginButton: Button = headerView.findViewById(R.id.Login)
-
-        loginButton.setOnClickListener {
-            val intent = Intent(this , AuthChoice::class.java)
-            startActivity(intent)
-        }
         //search by speciality
         val searchDoc: Button = findViewById(R.id.searchDoc)
-
         searchDoc.setOnClickListener {
             val intent1 = Intent(this , SearchDoctorBySpeciality::class.java)
+            intent1.putExtra("logged", isLoggedIn)
+            intent1.putExtra("email",email )
             startActivity(intent1)
         }
 
+        if (email != null) {
 
+            CreateAccountText.visibility = View.GONE
+            CreateAccountButton.visibility = View.GONE
 
-
-        //Update page elements
-
-        if (isLoggedIn) {
-            //stuff in the home page
-            textView3.visibility = View.GONE
-            imageButton.visibility = View.GONE
             //menu stuff
-            headerView.findViewById<TextView>(R.id.identif).text ="Welcome, Dr. $doctorName"
+            headerView.findViewById<TextView>(R.id.identif).text ="$email"
             headerView.findViewById<Button>(R.id.Login).visibility =View.GONE
             // Update menu items based on login status
-            menu.findItem(R.id.ProfileDoctor).isVisible = true
-            menu.findItem(R.id.logout).isVisible = true
-
-        }else if(isLoggedInPatient){
-
-            textView3.visibility =View.GONE
-            imageButton.visibility =View.GONE
-            headerView.findViewById<TextView>(R.id.identif).text ="Welcome,$PatientName"
-            headerView.findViewById<Button>(R.id.Login).visibility =View.GONE
-            menu.findItem(R.id.ProfileDoctor).isVisible = true
+            menu.findItem(R.id.Profile).isVisible = true
             menu.findItem(R.id.logout).isVisible = true
 
         }else{
-            textView3.visibility =View.VISIBLE
-            imageButton.visibility =View.VISIBLE
+            CreateAccountText.visibility =View.VISIBLE
+            CreateAccountButton.visibility =View.VISIBLE
             headerView.findViewById<TextView>(R.id.identif).text = "Doctor Finder"
             headerView.findViewById<Button>(R.id.Login).visibility =View.VISIBLE
-            menu.findItem(R.id.ProfileDoctor).isVisible = false
+            val loginButton: Button = headerView.findViewById(R.id.Login)
+            headerView.setOnClickListener {
+            }
+            loginButton.setOnClickListener {
+
+
+                val intent2 = Intent(this , AuthChoice::class.java)
+                startActivity(intent2)
+            }
+            menu.findItem(R.id.Profile).isVisible = false
             menu.findItem(R.id.logout).isVisible = false
 
+
+            CreateAccountButton.setOnClickListener(View.OnClickListener {
+                val intent = Intent(this, CreateAccountDoc::class.java)
+                startActivity(intent)
+                finish()
+            })
         }
 
 
 
 
-        imageButton.setOnClickListener(View.OnClickListener {
-            // Start the "AuthChoice" activity when the button is clicked
-            val intent = Intent(this, CreateAccountDoc::class.java)
-            startActivity(intent)
-        })
 
 
     }
@@ -135,18 +118,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.home -> {
-
+            R.id.Profile -> {
+                checkUserTypeAndNavigate()
+                return true
             }
             R.id.logout -> {
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, MainActivity::class.java)
+
                 intent.putExtra("logged", 0)
                 startActivity(intent)
-
             }
-
-
         }
         val drawer: DrawerLayout = findViewById(R.id.drawerLayout)
         drawer.closeDrawer(GravityCompat.START)
@@ -154,6 +136,50 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return false
     }
 
+    private fun checkUserTypeAndNavigate() {
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let { firebaseUser ->
+            val userEmail = firebaseUser.email
 
+            if (userEmail != null) {
+                checkUserType(userEmail)
+            } else {
+                //error message or redirect to login
+            }
+        }
+    }
+
+    private fun checkUserType(userEmail: String) {
+        val databaseReferenceDoctors = FirebaseDatabase.getInstance().getReference("Doctors")
+        databaseReferenceDoctors.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Check if the email exists in the "Doctors" node
+                if (dataSnapshot.hasChild(userEmail.replace(".", ","))) {
+                    // The user is a doctor
+                    navigateToDoctorProfile()
+                } else {
+                    // The user is a regular user
+                    navigateToUserProfile()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle the error
+                Toast.makeText(this@MainActivity, "Database Error", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun navigateToDoctorProfile() {
+        // Navigate to the doctor's profile activity
+        val intent = Intent(this, DoctorProfileActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToUserProfile() {
+        // Navigate to the regular user's profile activity
+        val intent = Intent(this, UserProfileActivity::class.java)
+        startActivity(intent)
+    }
 
 }

@@ -1,8 +1,10 @@
 package ma.ensa.medicproject
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -15,6 +17,8 @@ import com.google.firebase.database.*
 class AuthDoctor : AppCompatActivity() {
 
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var create: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +27,16 @@ class AuthDoctor : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
 
+
         val loginButton = findViewById<Button>(R.id.doctor_sign_in_button)
         loginButton.setOnClickListener {
             loginDoctor()
+        }
+
+        create = findViewById(R.id.CreateAccountDoc)
+        create.setOnClickListener{
+            val intent = Intent(this, CreateAccountDoc::class.java)
+            startActivity(intent)
         }
     }
 
@@ -40,11 +51,16 @@ class AuthDoctor : AppCompatActivity() {
             mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Login successful
-                        // You can redirect the user to the next activity or perform other actions
+                        //
+                        val navHeaderLoginButton = findViewById<Button>(R.id.Login)
+                        navHeaderLoginButton.visibility = View.GONE
+
+                        //
                         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                         // Example: Redirect to DoctorDashboardActivity
                         val intent = Intent(this, MainActivity::class.java)
+
+                        intent.putExtra("email", email)
                         intent.putExtra("logged", 1)
                         startActivity(intent)
                         finish()

@@ -21,27 +21,37 @@
         android:layout_marginVertical="5dp"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+
+                    />
+
+
+
+            </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
 
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="Find your Desired Doctor"
-                android:textStyle="bold"
-                android:textSize="30dp"
-                android:textColor="#000"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,6 +119,7 @@
 
 
 
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
