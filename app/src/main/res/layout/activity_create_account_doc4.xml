@@ -125,7 +125,7 @@
 
             <LinearLayout
                 android:id="@+id/days1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal">
@@ -151,12 +151,6 @@
                     android:layout_marginBottom="8dp"
                     android:text="Wednesday" />
 
-                <CheckBox
-                    android:id="@+id/checkBoxThursday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="Thursday" />
 
 
 
@@ -168,6 +162,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkBoxThursday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Thursday" />
+
                 <CheckBox
                     android:id="@+id/checkBoxFriday"
                     android:layout_width="wrap_content"
@@ -181,13 +182,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Saturday" />
 
-                <CheckBox
-                    android:id="@+id/checkBoxSunday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:text="Sunday" />
-            </LinearLayout>
+                 </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"

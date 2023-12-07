@@ -4,21 +4,23 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Doctor(
-    val name: String = "",
-    val email: String = "",
+    var name: String = "",
+    var email: String = "",
     val password: String = "",
     val gender: String = "",
     val pmdc: String = "",
-    val experience: String = "",
+    var experience: String = "",
     val specialityId: Int = 0,
-    val consultPrice: String = "",
+    var consultPrice: String = "",
     val consultPriceInfo: String = "",
     val address: String = "",
-    val location: String = "",
-    val city: String = "",
-    val selectedDays: List<String> = emptyList(),
-    val startTime: String = "",
-    val endTime: String = ""
+    var location: String = "",
+    var city: String = "",
+    var selectedDays: List<String> = emptyList(),
+    var startTime: String = "",
+    var endTime: String = "",
+    var clickCounter: Int = 0,
+    var phoneNumber: String = ""
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
@@ -35,7 +37,9 @@ data class Doctor(
         parcel.readString() ?: "",
         parcel.createStringArrayList() ?: emptyList(),
         parcel.readString() ?: "",
-        parcel.readString() ?: ""
+        parcel.readString() ?: "",
+        parcel.readInt(),
+        parcel.readString() ?: "" // Added phone number property
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -54,6 +58,8 @@ data class Doctor(
         parcel.writeStringList(selectedDays)
         parcel.writeString(startTime)
         parcel.writeString(endTime)
+        parcel.writeInt(clickCounter)
+        parcel.writeString(phoneNumber)
     }
 
     override fun describeContents(): Int {

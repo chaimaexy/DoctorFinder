@@ -25,7 +25,8 @@ import com.google.firebase.database.ValueEventListener
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
     private lateinit var CreateAccountButton: Button
     private lateinit var CreateAccountText: TextView
-
+    private var email: String? = null
+    private var isLoggedIn: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -56,8 +57,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val headerView = navigationView.getHeaderView(0)
         val menu = navigationView.menu
 
-        val isLoggedIn = intent.getIntExtra("logged", 0)
-        val email = intent.getStringExtra("email" )
+        isLoggedIn = intent.getIntExtra("logged", 0)
+        email = intent.getStringExtra("email" )
 
 
         //search by speciality
@@ -92,7 +93,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             loginButton.setOnClickListener {
 
 
-                val intent2 = Intent(this , AuthChoice::class.java)
+                val intent2 = Intent(this , AuthUser::class.java)
                 startActivity(intent2)
             }
             menu.findItem(R.id.Profile).isVisible = false
@@ -151,34 +152,39 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun checkUserType(userEmail: String) {
         val databaseReferenceDoctors = FirebaseDatabase.getInstance().getReference("Doctors")
-        databaseReferenceDoctors.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Check if the email exists in the "Doctors" node
-                if (dataSnapshot.hasChild(userEmail.replace(".", ","))) {
-                    // The user is a doctor
-                    navigateToDoctorProfile()
-                } else {
-                    // The user is a regular user
-                    navigateToUserProfile()
+        databaseReferenceDoctors.orderByChild("email").equalTo(userEmail)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // The user is a doctor
+                        navigateToDoctorProfile()
+                    } else {
+                        // The user is a regular user
+                        navigateToUserProfile()
+                    }
                 }
-            }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Handle the error
-                Toast.makeText(this@MainActivity, "Database Error", Toast.LENGTH_SHORT).show()
-            }
-        })
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle the error
+                    Toast.makeText(this@MainActivity, "Database Error", Toast.LENGTH_SHORT).show()
+                }
+            })
     }
+
 
     private fun navigateToDoctorProfile() {
         // Navigate to the doctor's profile activity
         val intent = Intent(this, DoctorProfileActivity::class.java)
+        intent.putExtra("logged", 1)
+        intent.putExtra("email",email )
         startActivity(intent)
     }
 
     private fun navigateToUserProfile() {
         // Navigate to the regular user's profile activity
         val intent = Intent(this, UserProfileActivity::class.java)
+        intent.putExtra("logged", 1)
+        intent.putExtra("email",email )
         startActivity(intent)
     }
 

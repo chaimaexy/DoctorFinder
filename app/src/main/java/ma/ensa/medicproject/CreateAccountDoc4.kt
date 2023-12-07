@@ -33,6 +33,7 @@ class  CreateAccountDoc4 : AppCompatActivity() {
     private lateinit var consultPriceInfo: String
     private lateinit var adresse: String
     private lateinit var location: String
+    private lateinit var doctorPhone : String
     private lateinit var selectedCity: String
     //
     private lateinit var checkBoxMonday: CheckBox
@@ -41,7 +42,6 @@ class  CreateAccountDoc4 : AppCompatActivity() {
     private lateinit var checkBoxThursday: CheckBox
     private lateinit var checkBoxFriday: CheckBox
     private lateinit var checkBoxSaturday: CheckBox
-    private lateinit var checkBoxSunday: CheckBox
 
     private lateinit var hourStartPicker: NumberPicker
     private lateinit var minuteStartPicker: NumberPicker
@@ -61,7 +61,7 @@ class  CreateAccountDoc4 : AppCompatActivity() {
         checkBoxThursday = findViewById(R.id.checkBoxThursday)
         checkBoxFriday = findViewById(R.id.checkBoxFriday)
         checkBoxSaturday = findViewById(R.id.checkBoxSaturday)
-        checkBoxSunday = findViewById(R.id.checkBoxSunday)
+
 
         hourStartPicker = findViewById(R.id.hourStart)
         minuteStartPicker = findViewById(R.id.minuteStart)
@@ -83,6 +83,7 @@ class  CreateAccountDoc4 : AppCompatActivity() {
         consultPriceInfo = intent.getStringExtra("consultPriceInfo") ?: ""
         adresse = intent.getStringExtra("adresse") ?: ""
         location = intent.getStringExtra("location") ?: ""
+        doctorPhone = intent.getStringExtra("doctorPhone") ?: ""
         selectedCity = intent.getStringExtra("selectedCity") ?: ""
 
 
@@ -187,7 +188,6 @@ class  CreateAccountDoc4 : AppCompatActivity() {
         if (checkBoxThursday.isChecked) selectedDays.add("Thursday")
         if (checkBoxFriday.isChecked) selectedDays.add("Friday")
         if (checkBoxSaturday.isChecked) selectedDays.add("Saturday")
-        if (checkBoxSunday.isChecked) selectedDays.add("Sunday")
         return selectedDays
     }
 
@@ -220,7 +220,10 @@ class  CreateAccountDoc4 : AppCompatActivity() {
                 selectedCity,
                 selectedDays,
                 "$startHour:$startMinute",
-                "$endHour:$endMinute"
+                "$endHour:$endMinute",
+                0,
+                doctorPhone
+
             )
             createDoctorAccount(doctorEmail.trim(), doctorPassword.trim())
             saveDoctorToFirebase(doctor)

@@ -12,6 +12,7 @@ import com.google.firebase.storage.UploadTask
 import com.squareup.picasso.Picasso
 import java.util.*
 class FirebaseImageUploader {
+
     private val storageReference: StorageReference = FirebaseStorage.getInstance().reference
     fun uploadImage(imageUri: Uri, imagePMDC: String) {
         // Generate a unique name for the image using both UUID and imagePMDC

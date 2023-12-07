@@ -32,7 +32,8 @@ import java.util.Locale
 
 class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private var originalDoctorsList: MutableList<Doctor> = mutableListOf()
-
+    private var email: String? = null
+    private var isLoggedIn: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_doctor_by_speciality)
@@ -59,8 +60,8 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
         val headerView = navigationView.getHeaderView(0)
         val menu = navigationView.menu
 
-        val isLoggedIn = intent.getIntExtra("logged", 0)
-        val email = intent.getStringExtra("email" )
+        isLoggedIn = intent.getIntExtra("logged", 0)
+        email = intent.getStringExtra("email" )
         //-----------------------------
 
         // RecyclerView for Doctors
@@ -71,13 +72,11 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
         //------------------------------
         if (email != null) {
 
-
-
             //menu stuff
             headerView.findViewById<TextView>(R.id.identif).text ="$email"
             headerView.findViewById<Button>(R.id.Login).visibility =View.GONE
             // Update menu items based on login status
-            menu.findItem(R.id.ProfileDoctor).isVisible = true
+            menu.findItem(R.id.Profile).isVisible = true
             menu.findItem(R.id.logout).isVisible = true
 
         }else{
@@ -89,10 +88,10 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
             }
             loginButton.setOnClickListener {
 
-                val intent2 = Intent(this , AuthChoice::class.java)
+                val intent2 = Intent(this , AuthUser::class.java)
                 startActivity(intent2)
             }
-            menu.findItem(R.id.ProfileDoctor).isVisible = false
+            menu.findItem(R.id.Profile).isVisible = false
             menu.findItem(R.id.logout).isVisible = false
 
         }
@@ -156,7 +155,7 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
                         doctorsList.add(doctor)
                     }
                 }
-
+                doctorsList.sortByDescending { it.clickCounter }
                 val doctorAdapter = DoctorAdapter(doctorsList, specialitiesList) { clickedDoctor ->
                     val intent = Intent(this@SearchDoctorBySpeciality, DoctorInfoActivity::class.java)
                     intent.putExtra("doctor", clickedDoctor)
@@ -182,7 +181,7 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
         searchDoctorButton.setOnClickListener {
             val searchText = searchDoctorEditText.text.toString().toLowerCase(Locale.getDefault())
             val filteredDoctorsList: List<Doctor> = originalDoctorsList.filter {
-                it.name.toLowerCase(Locale.getDefault()).contains(searchText) || it.gender.toLowerCase(Locale.getDefault()).contains(searchText)
+                it.name.toLowerCase(Locale.getDefault()).contains(searchText) || it.gender.toLowerCase(Locale.getDefault()).contains(searchText) || it.city.toLowerCase(Locale.getDefault()).contains(searchText)
             }
 
             // Update the adapter with the filtered list
@@ -192,8 +191,9 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
-            R.id.home -> {
-
+            R.id.Profile -> {
+                checkUserTypeAndNavigate()
+                return true
             }
             R.id.logout -> {
                 FirebaseAuth.getInstance().signOut()
@@ -208,5 +208,53 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
 
         return false
     }
+    private fun checkUserTypeAndNavigate() {
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let { firebaseUser ->
+            val userEmail = firebaseUser.email
 
+            if (userEmail != null) {
+                checkUserType(userEmail)
+            } else {
+                //error message or redirect to login
+            }
+        }
+    }
+
+    private fun checkUserType(userEmail: String) {
+        val databaseReferenceDoctors = FirebaseDatabase.getInstance().getReference("Doctors")
+        databaseReferenceDoctors.orderByChild("email").equalTo(userEmail)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // The user is a doctor
+                        navigateToDoctorProfile()
+                    } else {
+                        // The user is a regular user
+                        navigateToUserProfile()
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle the error
+                    Toast.makeText(this@SearchDoctorBySpeciality, "Database Error", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun navigateToDoctorProfile() {
+        // Navigate to the doctor's profile activity
+        val intent = Intent(this, DoctorProfileActivity::class.java)
+        intent.putExtra("logged", 1)
+        intent.putExtra("email",email )
+        startActivity(intent)
+    }
+
+    private fun navigateToUserProfile() {
+        // Navigate to the regular user's profile activity
+        val intent = Intent(this, UserProfileActivity::class.java)
+        intent.putExtra("logged", 1)
+        intent.putExtra("email",email )
+        startActivity(intent)
+    }
 }

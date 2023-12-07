@@ -120,6 +120,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/doctorPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_marginBottom="15dp"
+                    android:hint="Phone Number **"
+
+                    android:inputType="phone" />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal"
 
                 android:padding="7dp">
@@ -166,6 +185,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:hint="Adresse"
+
                     android:inputType="text" />
 
 
@@ -226,7 +246,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text=""
-                    android:editable="false"
                     android:lines="3"
                     android:textColor="@color/black"
                     android:textSize="14sp"
@@ -280,7 +299,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Selected Speciality:" />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="20sp"
+                android:gravity="left"
+                android:text="** provide your health facility phone number to enable patients to call and make a appointment  "
+                />
             <Button
                 android:id="@+id/doctor_sign_in_button"
                 android:layout_width="200sp"

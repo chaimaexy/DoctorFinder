@@ -32,6 +32,7 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
     private var selectedImageUri: Uri? = null
     //
     private lateinit var consultPrice: EditText
+    private lateinit var doctorPhone : EditText
     private lateinit var consultPriceInfo: EditText
     private lateinit var adresse: EditText
     private lateinit var Doclocation: EditText
@@ -121,16 +122,19 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
         adresse= findViewById(R.id.doctorAdresse)
         consultPriceInfo= findViewById(R.id.consoltPriceInfos)
         Doclocation= findViewById(R.id.Location)
+        doctorPhone =  findViewById(R.id.doctorPhone)
         //next
         val btnNext: Button = findViewById(R.id.doctor_sign_in_button)
         btnNext.setOnClickListener {
             val consultPriceValue = consultPrice.text.toString()
             val adresseValue = adresse.text.toString()
             val locationValue = Doclocation.text.toString()
+            val doctorPhone = doctorPhone.text.toString()
 
             if (consultPriceValue.isNotEmpty() &&
                 adresseValue.isNotEmpty() &&
                 locationValue.isNotEmpty() &&
+                doctorPhone.isNotEmpty() &&
                 selectedCity.isNotEmpty()) {
                 val intent = Intent(this, CreateAccountDoc4::class.java)
                 // put new data
@@ -139,6 +143,7 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
                 intent.putExtra("adresse", adresseValue)
                 intent.putExtra("location", locationValue)
                 intent.putExtra("selectedCity", selectedCity)
+                intent.putExtra("doctorPhone", doctorPhone)
                 // put old input2
                 intent.putExtra("doctorPMDC", doctorPMDC)
                 intent.putExtra("doctorExperience", doctorExperience)

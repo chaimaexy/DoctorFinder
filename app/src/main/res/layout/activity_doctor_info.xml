@@ -20,16 +20,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="25sp"
+            android:visibility="gone"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             app:srcCompat="@drawable/back" />
+
+
 
         <ImageView
             android:id="@+id/DoctorImage"
             android:layout_width="match_parent"
             android:layout_height="170sp"
+            android:layout_marginTop="80sp"
             android:layout_below="@id/back"
-            android:padding="25sp"
+            android:padding="20sp"
             app:srcCompat="@drawable/homeimg" />
 
     </RelativeLayout>
@@ -48,6 +52,26 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <Button
+                android:id="@+id/favoriteButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/gray_heart"
+                android:onClick="onFavoriteButtonClick" />
+            <TextView
+                android:id="@+id/favoriteText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Add to favorites"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -403,16 +427,31 @@
 
                 </LinearLayout>
 
+
+
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20sp"
+                        android:background="@color/blue"
+                        android:drawableLeft="@drawable/location"
+                        android:padding="20sp"
+                        android:text="show directions"
+                        android:textSize="20sp" />
                 <Button
+                    android:id="@+id/callDoctor"
                     android:layout_width="wrap_content"
-                    android:padding="20sp"
-                    android:layout_height="70sp"
-                    android:text="show directions"
-                    android:drawableLeft="@drawable/location"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="20sp"
-                    android:textSize="20sp"
-                    android:background="@color/quantum_white_100"
-                    android:layout_marginBottom="70sp"/>
+                    android:layout_marginBottom="70sp"
+                    android:background="@color/green"
+                    android:drawableLeft="@drawable/call"
+                    android:padding="20sp"
+                    android:text="CALL now"
+                    android:textSize="20sp" />
+
+
             </LinearLayout>
 
 

@@ -29,7 +29,7 @@ class AuthUser : AppCompatActivity() {
 
         create = findViewById(R.id.CreateAccount)
         create.setOnClickListener{
-            val intent = Intent(this, CreateAccountPatient::class.java)
+            val intent = Intent(this, AuthChoice::class.java)
             startActivity(intent)
         }
 
