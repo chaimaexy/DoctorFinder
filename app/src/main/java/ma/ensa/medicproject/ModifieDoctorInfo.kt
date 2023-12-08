@@ -20,9 +20,9 @@ class ModifieDoctorInfo : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var experienceEditText: EditText
     private lateinit var consultPriceEditText: EditText
-    private lateinit var locationEditText: EditText
     private lateinit var editTextPhone: EditText
     private lateinit var mondayCheckBox: CheckBox
+    private lateinit var passwordConfirmEditText : EditText
     private lateinit var tuesdayCheckBox: CheckBox
     private lateinit var wednesdayCheckBox: CheckBox
     private lateinit var thursdayCheckBox: CheckBox
@@ -44,10 +44,10 @@ class ModifieDoctorInfo : AppCompatActivity() {
         nameEditText = findViewById(R.id.editTextName)
         emailEditText = findViewById(R.id.editTextEmail)
         passwordEditText = findViewById(R.id.editTextPassword)
+        passwordConfirmEditText = findViewById(R.id.editTextPasswordConfirm)
         experienceEditText = findViewById(R.id.editTextExperience)
         editTextPhone = findViewById(R.id.editTextPhone)
         consultPriceEditText = findViewById(R.id.editTextConsultPrice)
-        locationEditText = findViewById(R.id.editTextLocation)
         mondayCheckBox = findViewById(R.id.checkBoxMonday)
         tuesdayCheckBox = findViewById(R.id.checkBoxTuesday)
         wednesdayCheckBox = findViewById(R.id.checkBoxWednesday)
@@ -113,7 +113,7 @@ class ModifieDoctorInfo : AppCompatActivity() {
                             experienceEditText.setText(it.experience)
                             editTextPhone.setText(it.phoneNumber)
                             consultPriceEditText.setText(it.consultPrice)
-                            locationEditText.setText(it.location)
+
 
 
                             // Update CheckBox and NumberPicker based on the selectedDays, startTime, and endTime in Doctor
@@ -155,36 +155,43 @@ class ModifieDoctorInfo : AppCompatActivity() {
         val newName = nameEditText.text.toString().trim()
         val newEmail = emailEditText.text.toString().trim()
         val newPassword = passwordEditText.text.toString().trim()
+        val newPasswordConfirm = passwordConfirmEditText.text.toString().trim()
         val newExperience = experienceEditText.text.toString().trim()
         val newPhone = editTextPhone.text.toString().trim()
         val newConsultPrice = consultPriceEditText.text.toString().trim()
-        val newLocation = locationEditText.text.toString().trim()
         val newSelectedDays = getSelectedDays()
         val newStartTime = getStartTime()
         val newEndTime = getEndTime()
 
-        if (newName.isEmpty() || newEmail.isEmpty()) {
+        if (newName.isEmpty() || newEmail.isEmpty()|| newPassword.isEmpty() || newPasswordConfirm.isEmpty()) {
             Toast.makeText(
                 this,
-                "Name and Email cannot be empty",
-                Toast.LENGTH_SHORT
+                "Name, Email, Password, and Confirm Password cannot be empty",
+                Toast.LENGTH_LONG
             ).show()
             return
         }
-
-        // Update the doctor's data in the database
-        updateDoctorProfile(
-            newName,
-            newEmail,
-            newPassword,
-            newExperience,
-            newConsultPrice,
-            newLocation,
-            newSelectedDays,
-            newStartTime,
-            newEndTime,
-            newPhone
-        )
+        if (newPassword != newPasswordConfirm) {
+            Toast.makeText(
+                this,
+                "Password and Confirm Password do not match",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }else {
+            // Update the doctor's data in the database
+            updateDoctorProfile(
+                newName,
+                newEmail,
+                newPassword,
+                newExperience,
+                newConsultPrice,
+                newSelectedDays,
+                newStartTime,
+                newEndTime,
+                newPhone
+            )
+        }
     }
 
     private fun getSelectedDays(): List<String> {
@@ -222,7 +229,6 @@ class ModifieDoctorInfo : AppCompatActivity() {
         newPassword: String,
         newExperience: String,
         newConsultPrice: String,
-        newLocation: String,
         newSelectedDays: List<String>,
         newStartTime: String,
         newEndTime: String,
@@ -244,7 +250,6 @@ class ModifieDoctorInfo : AppCompatActivity() {
                             // You might want to add logic to update the password securely
                             it.experience = newExperience
                             it.consultPrice = newConsultPrice
-                            it.location = newLocation
                             it.selectedDays = newSelectedDays
                             it.startTime = newStartTime
                             it.endTime = newEndTime

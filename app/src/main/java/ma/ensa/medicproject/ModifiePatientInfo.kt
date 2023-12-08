@@ -14,6 +14,7 @@ class ModifiePatientInfo : AppCompatActivity() {
     private lateinit var nameEditText: EditText
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
+    private lateinit var passwordConfirmEditText : EditText
     private lateinit var validateButton: Button
     private lateinit var cancelButton: Button
     private lateinit var currentUserEmail: String
@@ -25,6 +26,7 @@ class ModifiePatientInfo : AppCompatActivity() {
         nameEditText = findViewById(R.id.namePatientField)
         emailEditText = findViewById(R.id.emailPatientField)
         passwordEditText = findViewById(R.id.passwordPatientField)
+        passwordConfirmEditText = findViewById(R.id.editTextPasswordConfirmUser)
         validateButton = findViewById(R.id.buttonValidate)
         cancelButton = findViewById(R.id.buttonCancel)
 
@@ -87,8 +89,9 @@ class ModifiePatientInfo : AppCompatActivity() {
         val newName = nameEditText.text.toString().trim()
         val newEmail = emailEditText.text.toString().trim()
         val newPassword = passwordEditText.text.toString().trim()
+        val newPasswordConfirm = passwordConfirmEditText.text.toString().trim()
 
-        if (newName.isEmpty() || newEmail.isEmpty()) {
+        if (newName.isEmpty() || newEmail.isEmpty() || newPassword.isEmpty() || newPasswordConfirm.isEmpty()) {
             Toast.makeText(
                 this,
                 "Name and Email cannot be empty",
@@ -97,8 +100,16 @@ class ModifiePatientInfo : AppCompatActivity() {
             return
         }
 
-        // Update the user's data in the database
-        updateUserProfile(newName, newEmail, newPassword)
+        if (newPassword != newPasswordConfirm) {
+            Toast.makeText(
+                this,
+                "Password and Confirm Password do not match",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }else {
+            updateUserProfile(newName, newEmail, newPassword)
+        }
     }
 
     private fun updateUserProfile(newName: String, newEmail: String, newPassword: String) {

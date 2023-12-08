@@ -96,6 +96,21 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:layout_marginTop="8dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm Password:"
+            android:textStyle="bold"
+            android:layout_marginTop="22sp"
+            android:textSize="18sp"
+            />
+        <EditText
+            android:id="@+id/editTextPasswordConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:layout_marginTop="8dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -146,21 +161,6 @@
             android:inputType="number"
             android:layout_marginTop="8dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Location:"
-            android:textStyle="bold"
-            android:layout_marginTop="22sp"
-            android:textSize="18sp"
-            />
-        <EditText
-            android:id="@+id/editTextLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Location"
-            android:inputType="text"
-            android:layout_marginTop="8dp" />
 
         <TextView
             android:layout_width="match_parent"

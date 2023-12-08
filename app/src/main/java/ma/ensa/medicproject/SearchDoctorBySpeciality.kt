@@ -3,6 +3,7 @@ package ma.ensa.medicproject;
 import DoctorAdapter
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -161,6 +162,12 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
                     intent.putExtra("doctor", clickedDoctor)
                     intent.putExtra("email", email)
                     intent.putExtra("logged", isLoggedIn)
+                    //search speciality
+                    val specialityId = clickedDoctor.specialityId
+                    val associatedSpeciality = specialitiesList.find { it.specId == specialityId }
+                    if (associatedSpeciality != null) {
+                        intent.putExtra("speciality", associatedSpeciality.specName)
+                    }
                     startActivity(intent)
                 }
                 recyclerViewDoctors.adapter = doctorAdapter
@@ -191,6 +198,13 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
+            R.id.home -> {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("email", email)
+                intent.putExtra("logged", 1)
+                startActivity(intent)
+                return true
+            }
             R.id.Profile -> {
                 checkUserTypeAndNavigate()
                 return true
@@ -258,3 +272,7 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
         startActivity(intent)
     }
 }
+
+
+
+

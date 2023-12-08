@@ -21,6 +21,7 @@ class DoctorProfileActivity : AppCompatActivity() {
     private lateinit var nameTextView: TextView
     private lateinit var modifyButton: Button
     private lateinit var deleteButton: Button
+    private lateinit var VisitCount : TextView
     private var isDeleteRequested: Boolean = false
     private lateinit var allDoctorsList: MutableList<Doctor>
     private lateinit var recyclerViewFavoriteDoctors: RecyclerView
@@ -34,6 +35,7 @@ class DoctorProfileActivity : AppCompatActivity() {
         nameTextView = findViewById(R.id.nameDoctorProfile)
         modifyButton = findViewById(R.id.ModifyDoctorButton)
         deleteButton = findViewById(R.id.deleteDoctorButton)
+        VisitCount = findViewById(R.id.VisitCount)
         allDoctorsList = mutableListOf()
         fetchAllDoctorsFromDatabase()
         val isLoggedIn = intent.getIntExtra("logged", 0)
@@ -51,6 +53,7 @@ class DoctorProfileActivity : AppCompatActivity() {
             intent.putExtra("email", email)
             startActivity(intent)
         }
+        //
 
 
         fetchDoctorDataFromDatabase()
@@ -246,11 +249,13 @@ class DoctorProfileActivity : AppCompatActivity() {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         for (snapshot in dataSnapshot.children) {
                             // Assuming each child corresponds to a user node
-                            val user = snapshot.getValue(User::class.java)
+                            val user = snapshot.getValue(Doctor::class.java)
 
                             // Update the UI with user's name
                             user?.let {
+
                                 nameTextView.text = "Bonjour, Dr. ${it.name}!"
+                                VisitCount.text = "${it.clickCounter} People have seen your account so far"
                             }
                         }
                     }

@@ -130,7 +130,7 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
             val adresseValue = adresse.text.toString()
             val locationValue = Doclocation.text.toString()
             val doctorPhone = doctorPhone.text.toString()
-
+            val lastKnownLocation = getLastKnownLocation()
             if (consultPriceValue.isNotEmpty() &&
                 adresseValue.isNotEmpty() &&
                 locationValue.isNotEmpty() &&
@@ -155,12 +155,31 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
                 intent.putExtra("doctorGender", selectedGender)
                 intent.putExtra("selectedImage", selectedImageUri)
 
+                // Retrieve the last known location
+                if (lastKnownLocation != null) {
+//                    val latitude = lastKnownLocation.latitude
+//                    val longitude = lastKnownLocation.longitude
+                    // Pass the latitude and longitude to the intent
+                    intent.putExtra("latitude", lastKnownLocation.latitude)
+                    intent.putExtra("longitude", lastKnownLocation.longitude)
+                }
                 startActivity(intent)
             } else {
                 Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             }
         }
 
+    }
+    @SuppressLint("MissingPermission")
+    private fun getLastKnownLocation(): Location? {
+        try {
+            locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5f, this)
+            return locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
     }
     //map
     fun selectCurrentLocation(view: View) {

@@ -69,7 +69,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             intent1.putExtra("email",email )
             startActivity(intent1)
         }
-
+        val searchNearby: Button = findViewById(R.id.searchNearby)
+        searchNearby.setOnClickListener {
+            val intent1 = Intent(this , ChooseSpecialityActivity::class.java)
+            intent1.putExtra("logged", isLoggedIn)
+            intent1.putExtra("email",email )
+            startActivity(intent1)
+        }
         if (email != null) {
 
             CreateAccountText.visibility = View.GONE

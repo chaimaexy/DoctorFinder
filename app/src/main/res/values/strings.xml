@@ -47,4 +47,5 @@
         <item>Larache</item>
         <!-- Add more cities as needed -->
     </string-array>
+    <string name="title_activity_map">MapActivity</string>
 </resources>

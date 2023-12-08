@@ -35,7 +35,8 @@ class  CreateAccountDoc4 : AppCompatActivity() {
     private lateinit var location: String
     private lateinit var doctorPhone : String
     private lateinit var selectedCity: String
-    //
+    private  var longitude : Double = 0.0
+    private  var latitude : Double = 0.0
     private lateinit var checkBoxMonday: CheckBox
     private lateinit var checkBoxTuesday: CheckBox
     private lateinit var checkBoxWednesday: CheckBox
@@ -85,6 +86,9 @@ class  CreateAccountDoc4 : AppCompatActivity() {
         location = intent.getStringExtra("location") ?: ""
         doctorPhone = intent.getStringExtra("doctorPhone") ?: ""
         selectedCity = intent.getStringExtra("selectedCity") ?: ""
+
+        val latitude = intent.getDoubleExtra("latitude", 0.0)
+        val longitude = intent.getDoubleExtra("longitude", 0.0)
 
 
         // Set up NumberPickers
@@ -140,7 +144,11 @@ class  CreateAccountDoc4 : AppCompatActivity() {
         findViewById<TextView>(R.id.textViewDoctorAdresse).text = "Doctor spec: $consultPriceInfo"
         findViewById<TextView>(R.id.textViewDoctorPriceInfo).text = "Doctor spec: $adresse"
         findViewById<TextView>(R.id.textViewDoctorLocation).text = "Doctor location: $location"
-        findViewById<TextView>(R.id.textViewDoctorCity).text = "Doctor Name: $selectedCity"
+        findViewById<TextView>(R.id.textViewDoctorCity).text = "Doctor city: $selectedCity"
+        findViewById<TextView>(R.id.longitude).text = "longitude: $latitude"
+        findViewById<TextView>(R.id.latitude).text = "latitude: $longitude"
+
+
 
         //back
         val btnBack: ImageButton = findViewById(R.id.btnBack)
@@ -217,6 +225,8 @@ class  CreateAccountDoc4 : AppCompatActivity() {
                 consultPriceInfo,
                 adresse,
                 location,
+                intent.getDoubleExtra("latitude", 0.0),
+                intent.getDoubleExtra("longitude", 0.0),
                 selectedCity,
                 selectedDays,
                 "$startHour:$startMinute",

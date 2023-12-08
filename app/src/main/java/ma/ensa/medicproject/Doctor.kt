@@ -15,6 +15,8 @@ data class Doctor(
     val consultPriceInfo: String = "",
     val address: String = "",
     var location: String = "",
+    var latitude: Double = 0.0,
+    var longitude: Double = 0.0,
     var city: String = "",
     var selectedDays: List<String> = emptyList(),
     var startTime: String = "",
@@ -34,6 +36,8 @@ data class Doctor(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
+        parcel.readDouble(),
+        parcel.readDouble(),
         parcel.readString() ?: "",
         parcel.createStringArrayList() ?: emptyList(),
         parcel.readString() ?: "",
@@ -54,6 +58,8 @@ data class Doctor(
         parcel.writeString(consultPriceInfo)
         parcel.writeString(address)
         parcel.writeString(location)
+        parcel.writeDouble(latitude)
+        parcel.writeDouble(longitude)
         parcel.writeString(city)
         parcel.writeStringList(selectedDays)
         parcel.writeString(startTime)

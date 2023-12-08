@@ -335,6 +335,16 @@
                 android:layout_height="wrap_content"
                 android:text="Selected Location:" />
             <TextView
+                android:id="@+id/latitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="latitude:" />
+            <TextView
+                android:id="@+id/longitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="longitude:" />
+            <TextView
                 android:id="@+id/textViewDoctorCity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

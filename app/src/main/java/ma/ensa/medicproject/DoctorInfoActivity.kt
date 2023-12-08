@@ -41,7 +41,7 @@ class DoctorInfoActivity : AppCompatActivity() {
     private lateinit var backButton : ImageView
     private lateinit var doctorImage: ImageView
     private lateinit var firebaseImageUploader: FirebaseImageUploader
-
+    private lateinit var directionBtn : Button
     private lateinit var doctor: Doctor
     private lateinit var  favoriteButton : Button
     private lateinit var callDoctor : Button
@@ -54,23 +54,46 @@ class DoctorInfoActivity : AppCompatActivity() {
         doctorName = findViewById(R.id.doctorNameTextView)
         doctorEmail = findViewById(R.id.doctorEmailTextView)
         doctorGender = findViewById(R.id.doctorGenderTextView)
-
         experience= findViewById(R.id.doctorExperienceTextView)
         specialityy= findViewById(R.id.doctorSpecialityTextView)
         callDoctor =  findViewById(R.id.callDoctor)
         consultPrice= findViewById(R.id.doctorPriceTextView)
         consultPriceInfo= findViewById(R.id.doctorPriceInfoTextView)
-        address= findViewById(R.id.doctorLocationTextView)
+       // address= findViewById(R.id.doctorLocationTextView)
         city= findViewById(R.id.doctorCityTextView)
         workDays= findViewById(R.id.doctorDaysTextView)
         startTime= findViewById(R.id.doctorStartTextView)
         endTime= findViewById(R.id.doctorFinishTextView)
+
+        //---------------
+        directionBtn = findViewById(R.id.directionBtn)
         val isLoggedIn = intent.getIntExtra("logged", 0)
         val email = intent.getStringExtra("email" )
         val inProfileDoctor = intent.getIntExtra("inProfileDoctor", 0)
         val inProfileUser = intent.getIntExtra("inProfileUser", 0)
+        val Doctorspeciality = intent.getStringExtra("speciality" )
 
         doctor = intent.getParcelableExtra("doctor")!!
+
+        //affectation
+        doctorName.text = doctor.name
+        doctorEmail.text  = doctor.email
+        doctorGender.text  = doctor.gender
+        experience.text = doctor.experience
+        consultPrice.text = doctor.consultPrice + " DH"
+        consultPriceInfo.text = doctor.consultPriceInfo
+        city.text = doctor.city
+        workDays.text = doctor.selectedDays.toString()
+        startTime.text = doctor.startTime
+        endTime.text = doctor.endTime
+        specialityy.text= Doctorspeciality
+        //-------------
+        directionBtn.setOnClickListener {
+
+            directionFromCurrentMap(doctor.latitude.toString(), doctor.longitude.toString())
+
+        }
+
         //-------------
         favoriteButton = findViewById(R.id.favoriteButton)
         val favoriteText = findViewById<TextView>(R.id.favoriteText)
@@ -100,13 +123,20 @@ class DoctorInfoActivity : AppCompatActivity() {
         }
         //---------------------
         doctorImage = findViewById(R.id.DoctorImage)
+
         firebaseImageUploader = FirebaseImageUploader()
+        firebaseImageUploader.getImageDownloadUrl(doctor.pmdc,
+            { uri ->
+                Picasso.get().load(uri).into(doctorImage)
+            },
+            {
+                doctorImage.setImageResource(R.drawable.homeimg)            }
+        )
+
 
 
         //
         backButton =  findViewById(R.id.back)
-
-
 
             backButton.setOnClickListener(View.OnClickListener {
                 if (inProfileDoctor == 1) {
@@ -152,37 +182,24 @@ class DoctorInfoActivity : AppCompatActivity() {
                             }
                         }
 
-                        doctor?.let {
-                            val doctorSpecId = it.specialityId
+
+                            val doctorSpecId = doctor?.specialityId
                             val doctorSpeciality =
                                 specialitiesList.find { it.specId == doctorSpecId }
 
-                            // Display doctor information in your UI elements
-                            doctorName.text = " ${it.name}"
-                            doctorEmail.text = " ${it.email}"
-                            doctorGender.text = " ${it.gender}"
-                            //experience.text = "Experience: ${it.experience}"
 
-                            // Display speciality information if found
                             doctorSpeciality?.let {
                                 specialityy.text = " ${it.specName}"
                             }
 
-                            consultPrice.text = " ${it.consultPrice}"
 
-                            //consultPriceInfo.text = " ${it.consultPriceInfo}"
-                            address.text = " ${it.address}"
-                            city.text = " ${it.city}"
-                            workDays.text = " ${it.selectedDays}"
-                            startTime.text = " ${it.startTime}"
-                            endTime.text = " ${it.endTime}"
 
-                            loadDoctorImage(it.pmdc)
-                            //
-                            val experienceLayout = findViewById<LinearLayout>(R.id.ExperienceLayout)
-                            val priceInfoLayout = findViewById<LinearLayout>(R.id.PriceInfoLayout)
-
-                            if (it.consultPriceInfo.isNullOrEmpty()) {
+                        //========
+                        val experienceLayout = findViewById<LinearLayout>(R.id.ExperienceLayout)
+                        val priceInfoLayout = findViewById<LinearLayout>(R.id.PriceInfoLayout)
+                        if (doctor != null) {
+                           // loadDoctorImage(doctor.pmdc)
+                            if (doctor.consultPriceInfo.isNullOrEmpty()) {
 
                                 priceInfoLayout.visibility = View.GONE
                             } else {
@@ -190,10 +207,10 @@ class DoctorInfoActivity : AppCompatActivity() {
                                 priceInfoLayout.visibility = View.VISIBLE
                                 val doctorPriceInfoTextView =
                                     findViewById<TextView>(R.id.doctorPriceInfoTextView)
-                                doctorPriceInfoTextView.text = it.consultPriceInfo
+                                doctorPriceInfoTextView.text = doctor.consultPriceInfo
                             }
 
-                            if (it.experience.isNullOrEmpty()) {
+                            if (doctor.experience.isNullOrEmpty()) {
 
                                 experienceLayout.visibility = View.GONE
                             } else {
@@ -201,9 +218,10 @@ class DoctorInfoActivity : AppCompatActivity() {
                                 experienceLayout.visibility = View.VISIBLE
                                 val doctorExperienceTextView =
                                     findViewById<TextView>(R.id.doctorExperienceTextView)
-                                doctorExperienceTextView.text = it.experience
+                                doctorExperienceTextView.text = doctor.experience
                             }
                         }
+
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
@@ -244,18 +262,6 @@ private fun checkIfDoctorInFavorites(userEmail: String?, doctorPMDC: String?) {
 
 
     //----------------------------------------------
-    private fun loadDoctorImage(imagePMDC: String) {
-        firebaseImageUploader.getImageDownloadUrl(imagePMDC,
-            { uri ->
-                // Loading the image into the ImageView using Picasso
-                Picasso.get().load(uri).placeholder(R.drawable.homeimg).into(doctorImage)
-            },
-            {
-                // Handle failure to get image URL
-                Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
-            }
-        )
-    }
 
     private fun handleFavoriteButtonClick() {
         val userEmail = FirebaseAuth.getInstance().currentUser?.email
@@ -336,4 +342,9 @@ private fun checkIfDoctorInFavorites(userEmail: String?, doctorPMDC: String?) {
         })
     }
 
+    private fun directionFromCurrentMap(destinationLatitude:String ,destinationLongitude:String  ){
+        val mapUri = Uri.parse("https://maps.google.com/maps?daddr=$destinationLatitude,$destinationLongitude")
+        val intent = Intent(Intent.ACTION_VIEW, mapUri)
+        startActivity(intent)
+    }
 }
