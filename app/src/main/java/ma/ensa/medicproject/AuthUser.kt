@@ -1,5 +1,6 @@
 package ma.ensa.medicproject
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +17,7 @@ class AuthUser : AppCompatActivity() {
     private lateinit var create: TextView
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth_user)
@@ -31,7 +33,9 @@ class AuthUser : AppCompatActivity() {
         create.setOnClickListener{
             val intent = Intent(this, AuthChoice::class.java)
             startActivity(intent)
+            finish()
         }
+
 
 
     }

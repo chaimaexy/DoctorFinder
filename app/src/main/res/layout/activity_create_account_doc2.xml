@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Are you a Doctor?"
+                    android:text="@string/are_you_a_doctor"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -104,11 +104,10 @@
                     android:breakStrategy="high_quality"
                     android:capitalize="none"
                     android:contextClickable="false"
-                    android:cursorVisible="false"
                     android:fontFamily="monospace"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Step 2/4 : Professional info"
+                    android:text="@string/step_2_4_professional_info"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                     android:textColor="@color/black"
                     android:textSize="13sp"
@@ -128,7 +127,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:hint="numéro de licence médicale"
+                    android:hint="@string/number_of_medical_licence"
                     android:inputType="text"
                     />
 
@@ -159,7 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:hint="Experience years(1 ,2,...) *"
+                    android:hint="@string/experience_years_1_year_2_years"
                     android:inputType="text"
                     />
 
@@ -173,43 +172,14 @@
                 android:layout_width="200sp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-
-
+                android:drawableRight="@drawable/go"
+                android:padding="10sp"
                 android:background="@drawable/bg_btn_search_doc"
                 android:gravity="center"
-                android:text="Next >"
+                android:text="@string/next"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textViewDoctorName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Doctor Name:" />
 
-            <TextView
-                android:id="@+id/textViewDoctorEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Doctor Email:" />
-
-            <TextView
-                android:id="@+id/textViewDoctorPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Doctor Password:" />
-
-            <TextView
-                android:id="@+id/textViewDoctorGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected gender:" />
-
-
-            <ImageView
-                android:id="@+id/imageViewSelectedImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
 
         </LinearLayout>
 

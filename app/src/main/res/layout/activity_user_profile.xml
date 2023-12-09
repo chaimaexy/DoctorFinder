@@ -1,5 +1,6 @@
-<!-- res/layout/activity_my_profile.xml -->
-<androidx.drawerlayout.widget.DrawerLayout
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,47 +9,55 @@
     android:background="@drawable/profilee"
     tools:context=".UserProfileActivity">
 
-
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/toolbarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/patient_profile"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="16dp"
+                    android:src="@drawable/home" />
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
 
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:id="@+id/toolbarTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="Patient Profile"
-                        android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/backButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:padding="16dp"
-                        android:src="@drawable/home" />
-                </RelativeLayout>
-            </androidx.appcompat.widget.Toolbar>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -85,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="50dp"
                     android:layout_marginTop="18sp"
-                    android:text="Bonjour!"
+                    android:text="hello"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textColorHighlight="#A82828"
@@ -103,7 +112,7 @@
                     android:drawableStart="@drawable/modifie"
                     android:drawableEnd="@drawable/go"
                     android:paddingHorizontal="16dp"
-                    android:text="Modifie personnal information"
+                    android:text="@string/modifie_personnal_information"
                     android:textAllCaps="true"
                     />
 
@@ -111,7 +120,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Your favorite Doctors"
+                    android:text="@string/your_favorite_doctors"
                     android:textColor="@color/black"
                     android:textColorHighlight="#A82828"
                     android:textDirection="firstStrongRtl"
@@ -140,7 +149,7 @@
                     android:drawableStart="@drawable/delete"
 
                     android:paddingHorizontal="20dp"
-                    android:text="delete account"
+                    android:text="@string/delete_account"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
 
@@ -152,5 +161,5 @@
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
-</androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Are you a Doctor?"
+                    android:text="@string/are_you_a_doctor"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -109,7 +109,7 @@
                     android:fontFamily="monospace"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Step 4/4 : Working Hours"
+                    android:text="@string/step_4_4_working_hours"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                     android:textColor="@color/black"
                     android:textSize="13sp"
@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="Days of work:" />
+                android:text="@string/days_of_work" />
 
 
             <LinearLayout
@@ -188,7 +188,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="Hour of starting:" />
+                android:text="@string/hour_of_starting" />
 
             <LinearLayout
                 android:layout_width="362dp"
@@ -222,7 +222,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="Hour of closing:" />
+                android:text="@string/hour_of_closing" />
 
             <LinearLayout
                 android:layout_width="362dp"
@@ -260,95 +260,12 @@
                 android:inputType="textMultiLine"
                 android:gravity="top"
                 android:layout_marginTop="16dp"
-                android:lines="5"
-                android:hint="Additional info... *"
+                android:lines="3"
+                android:hint="@string/additional_info"
                 android:layout_gravity="start|top"/>
 
-            <TextView
-                android:id="@+id/textViewDoctorName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Doctor Name:" />
-
-            <TextView
-                android:id="@+id/textViewDoctorEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Doctor Email:" />
-
-            <TextView
-                android:id="@+id/textViewDoctorPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Doctor Password:" />
-
-            <TextView
-                android:id="@+id/textViewDoctorGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected gender:" />
 
 
-            <ImageView
-                android:id="@+id/imageViewSelectedImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <TextView
-                android:id="@+id/textViewPMDC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected PMDC:" />
-            <TextView
-                android:id="@+id/textViewDoctorExperience"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected Experience:" />
-            <TextView
-                android:id="@+id/textViewDoctorSpeciality"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected Speciality:" />
-
-            <TextView
-                android:id="@+id/textViewDoctorPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected price:" />
-
-            <TextView
-                android:id="@+id/textViewDoctorAdresse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected adresse:" />
-            <TextView
-            android:id="@+id/textViewDoctorPriceInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Selected price info:" />
-
-
-            <TextView
-                android:id="@+id/textViewDoctorLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected Location:" />
-            <TextView
-                android:id="@+id/latitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="latitude:" />
-            <TextView
-                android:id="@+id/longitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="longitude:" />
-            <TextView
-                android:id="@+id/textViewDoctorCity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected City:" />
             <Button
                 android:id="@+id/doctor_sign_in_button"
                 android:layout_width="200sp"
@@ -358,7 +275,10 @@
 
                 android:background="@drawable/bg_btn_search_doc"
                 android:gravity="center"
-                android:text="Submit>"
+                android:layout_marginTop="50sp"
+                android:text="@string/submit"
+                android:drawableRight="@drawable/go"
+                android:padding="10sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

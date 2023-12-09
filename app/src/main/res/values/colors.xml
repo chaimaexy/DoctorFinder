@@ -6,5 +6,5 @@
     <color name="background">#ABDDE7</color>
     <color name="red">#C82D2D</color>
     <color name="green">#4CAF50</color>
-
+    <color name="splash_background">#4F9AA8</color>
 </resources>

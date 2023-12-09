@@ -33,8 +33,8 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="40px"
-                android:text="Patient"
+                android:text="@string/patient"
+                android:padding="10sp"
                 android:textColor="#000000"
                 android:textSize="34sp"
                 android:textStyle="bold" />
@@ -43,15 +43,16 @@
                 android:id="@+id/switch1"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:gravity="center" />
+                android:gravity="center"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="113dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="Doctor"
+                android:text="@string/doctor"
+                android:padding="10sp"
                 android:textColor="#000000"
                 android:textSize="34sp"
                 android:textStyle="bold" />
@@ -64,6 +65,7 @@
             android:layout_height="65dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/bg_btn_search_doc"
-            android:text="GET STARTED" />
+            android:text="@string/get_started" />
+
     </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

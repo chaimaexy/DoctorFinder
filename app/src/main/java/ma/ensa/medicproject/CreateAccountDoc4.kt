@@ -31,7 +31,6 @@ class  CreateAccountDoc4 : AppCompatActivity() {
     private var selectedSpecialityId: Int = 0
     private lateinit var consultPrice: String
     private lateinit var consultPriceInfo: String
-    private lateinit var adresse: String
     private lateinit var location: String
     private lateinit var doctorPhone : String
     private lateinit var selectedCity: String
@@ -82,7 +81,6 @@ class  CreateAccountDoc4 : AppCompatActivity() {
         selectedSpecialityId = intent.getIntExtra("selectedSpecialityId", 0)
         consultPrice = intent.getStringExtra("consultPrice") ?: ""
         consultPriceInfo = intent.getStringExtra("consultPriceInfo") ?: ""
-        adresse = intent.getStringExtra("adresse") ?: ""
         location = intent.getStringExtra("location") ?: ""
         doctorPhone = intent.getStringExtra("doctorPhone") ?: ""
         selectedCity = intent.getStringExtra("selectedCity") ?: ""
@@ -112,41 +110,13 @@ class  CreateAccountDoc4 : AppCompatActivity() {
             intent.putExtra("doctorName", doctorName)
             intent.putExtra("logged", 1)
 
-
             startActivity(intent)
+            finish()
 
         }
 
 
 
-
-
-//use old data
-        findViewById<TextView>(R.id.textViewDoctorName).text = "Doctor Name: $doctorName"
-
-        //use old data
-        findViewById<TextView>(R.id.textViewDoctorName).text = "Doctor Name: $doctorName"
-        findViewById<TextView>(R.id.textViewDoctorEmail).text = "Doctor Email: $doctorEmail"
-        findViewById<TextView>(R.id.textViewDoctorPassword).text = "Doctor Password: $doctorPassword"
-        this.findViewById<TextView>(R.id.textViewDoctorGender).text = "Doctor gender: $selectedGender"
-        val imageViewSelectedImage = findViewById<ImageView>(R.id.imageViewSelectedImage)
-        if (selectedImageUri != null) {
-            imageViewSelectedImage.setImageURI(selectedImageUri)
-        } else {
-            Log.e("CreateAccountDoc2", "selectedImageUri is null")
-
-        }
-        findViewById<TextView>(R.id.textViewPMDC).text = "Doctor PMDC: $doctorPMDC"
-        findViewById<TextView>(R.id.textViewDoctorExperience).text = "Doctor Experience: $doctorExperience"
-        findViewById<TextView>(R.id.textViewDoctorSpeciality).text = "Doctor spec: $selectedSpecialityId"
-
-        findViewById<TextView>(R.id.textViewDoctorPrice).text = "Doctor spec: $consultPrice"
-        findViewById<TextView>(R.id.textViewDoctorAdresse).text = "Doctor spec: $consultPriceInfo"
-        findViewById<TextView>(R.id.textViewDoctorPriceInfo).text = "Doctor spec: $adresse"
-        findViewById<TextView>(R.id.textViewDoctorLocation).text = "Doctor location: $location"
-        findViewById<TextView>(R.id.textViewDoctorCity).text = "Doctor city: $selectedCity"
-        findViewById<TextView>(R.id.longitude).text = "longitude: $latitude"
-        findViewById<TextView>(R.id.latitude).text = "latitude: $longitude"
 
 
 
@@ -165,15 +135,27 @@ class  CreateAccountDoc4 : AppCompatActivity() {
             intent.putExtra("doctorGender", selectedGender)
             intent.putExtra("selectedImage", selectedImageUri)
             startActivity(intent)
+            finish()
         }
         //cancel
         val btnCancel: ImageButton = findViewById(R.id.btnCancel)
         btnCancel.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            backButtonClickListener()
         }
 
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Call the same logic as your custom back button when the back button is pressed
+        backButtonClickListener()
+    }
+
+    private fun backButtonClickListener() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
     private fun setUpNumberPickers() {
         // Set up the range for hour and minute pickers
@@ -223,7 +205,6 @@ class  CreateAccountDoc4 : AppCompatActivity() {
                 selectedSpecialityId,
                 consultPrice,
                 consultPriceInfo,
-                adresse,
                 location,
                 intent.getDoubleExtra("latitude", 0.0),
                 intent.getDoubleExtra("longitude", 0.0),

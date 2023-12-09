@@ -15,7 +15,7 @@ import ma.ensa.medicproject.Specialities
 
 class FavoriteDoctorAdapter(
     private val doctorsList: MutableList<Doctor>,
-    private val specialitiesList: List<Specialities>,
+    private val specialitiesList: MutableList<Specialities>,
     private val itemClickListener: (Doctor) -> Unit
 ) : RecyclerView.Adapter<FavoriteDoctorAdapter.DoctorViewHolder>() {
 
@@ -39,16 +39,14 @@ class FavoriteDoctorAdapter(
 
         // Display doctor information
         holder.nameTextView.text = currentDoctor.name
-        holder.addressTextView.text = currentDoctor.address
 
         // Find the associated speciality for the doctor
         val specialityId = currentDoctor.specialityId
         val associatedSpeciality = specialitiesList.find { it.specId == specialityId }
 
         // Display speciality information if found
-        if (associatedSpeciality != null) {
-            holder.specialityTextView.text = associatedSpeciality.specName
-        }
+            holder.specialityTextView.text = associatedSpeciality?.specName ?: ""
+
 
         val firebaseImageUploader = FirebaseImageUploader()
         firebaseImageUploader.getImageDownloadUrl(currentDoctor.pmdc,

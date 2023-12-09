@@ -15,6 +15,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -34,8 +35,9 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
     private lateinit var consultPrice: EditText
     private lateinit var doctorPhone : EditText
     private lateinit var consultPriceInfo: EditText
-    private lateinit var adresse: EditText
     private lateinit var Doclocation: EditText
+    private lateinit var selectedCity : String
+
     //map
     private lateinit var locationManager: LocationManager
     //spinner location
@@ -69,37 +71,25 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
         val selectedSpecialityId = intent.getIntExtra("selectedSpecialityId", 0)
 
 
-
-
-        //test (to delete)
-        findViewById<TextView>(R.id.textViewDoctorName).text = "Doctor Name: $doctorName"
-        findViewById<TextView>(R.id.textViewDoctorEmail).text = "Doctor Email: $doctorEmail"
-        findViewById<TextView>(R.id.textViewDoctorPassword).text = "Doctor Password: $doctorPassword"
-        this.findViewById<TextView>(R.id.textViewDoctorGender).text = "Doctor gender: $selectedGender"
-        val imageViewSelectedImage = findViewById<ImageView>(R.id.imageViewSelectedImage)
-        if (selectedImageUri != null) {
-            imageViewSelectedImage.setImageURI(selectedImageUri)
-        } else {
-            // Log an error or show a placeholder image if selectedImageUri is null
-            Log.e("CreateAccountDoc2", "selectedImageUri is null")
-            // You can set a placeholder image resource if needed
-            // imageViewSelectedImage.setImageResource(R.drawable.placeholder_image)
-        }
-        findViewById<TextView>(R.id.textViewPMDC).text = "Doctor PMDC: $doctorPMDC"
-        findViewById<TextView>(R.id.textViewDoctorExperience).text = "Doctor Experience: $doctorExperience"
-        findViewById<TextView>(R.id.textViewDoctorSpeciality).text = "Doctor spec: $selectedSpecialityId"
-
         // city spinner
         // Populate the Spinner with city names
-        spinnerLocation =  findViewById(R.id.spinnerCity)
+        spinnerLocation = findViewById(R.id.spinnerCity)
 
         val cityArray = resources.getStringArray(R.array.moroccan_cities)
         val adapter0 = ArrayAdapter(this, android.R.layout.simple_spinner_item, cityArray)
         adapter0.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerLocation.adapter = adapter0
-                // selected city
-        val selectedCity: String = spinnerLocation.selectedItem.toString()
 
+        spinnerLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                selectedCity = parent?.getItemAtPosition(position).toString()
+                Toast.makeText(this@CreateAccoutDoc3, "Selected City: $selectedCity", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Toast.makeText(this@CreateAccoutDoc3, "No city selected!", Toast.LENGTH_SHORT).show()
+            }
+        }
         //back
         val btnBack: ImageButton = findViewById(R.id.btnBack)
         btnBack.setOnClickListener {
@@ -114,12 +104,10 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
         //cancel
         val btnCancel: ImageButton = findViewById(R.id.btnCancel)
         btnCancel.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            backButtonClickListener()
         }
         //new input
         consultPrice = findViewById(R.id.doctorprice)
-        adresse= findViewById(R.id.doctorAdresse)
         consultPriceInfo= findViewById(R.id.consoltPriceInfos)
         Doclocation= findViewById(R.id.Location)
         doctorPhone =  findViewById(R.id.doctorPhone)
@@ -127,12 +115,10 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
         val btnNext: Button = findViewById(R.id.doctor_sign_in_button)
         btnNext.setOnClickListener {
             val consultPriceValue = consultPrice.text.toString()
-            val adresseValue = adresse.text.toString()
             val locationValue = Doclocation.text.toString()
             val doctorPhone = doctorPhone.text.toString()
             val lastKnownLocation = getLastKnownLocation()
             if (consultPriceValue.isNotEmpty() &&
-                adresseValue.isNotEmpty() &&
                 locationValue.isNotEmpty() &&
                 doctorPhone.isNotEmpty() &&
                 selectedCity.isNotEmpty()) {
@@ -140,7 +126,6 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
                 // put new data
                 intent.putExtra("consultPrice", consultPriceValue)
                 intent.putExtra("consultPriceInfo", consultPriceInfo.text.toString())
-                intent.putExtra("adresse", adresseValue)
                 intent.putExtra("location", locationValue)
                 intent.putExtra("selectedCity", selectedCity)
                 intent.putExtra("doctorPhone", doctorPhone)
@@ -169,6 +154,17 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
             }
         }
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Call the same logic as your custom back button when the back button is pressed
+        backButtonClickListener()
+    }
+
+    private fun backButtonClickListener() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
     @SuppressLint("MissingPermission")
     private fun getLastKnownLocation(): Location? {
@@ -207,6 +203,12 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
                 location.longitude.toDouble(),
                 1
             )
+            if (!addresses.isNullOrEmpty()) {
+                val cityName: String = addresses[0].locality ?: "Unknown City"
+                Toast.makeText(this, "Current City: $cityName", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "City information not available", Toast.LENGTH_SHORT).show()
+            }
             if (!addresses.isNullOrEmpty()) {
                 val address: String = addresses[0].getAddressLine(0)
                 Doclocation.setText(address)

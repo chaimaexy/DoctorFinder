@@ -26,7 +26,8 @@
                 android:text="Modifie Profile"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:id="@+id/backButton"
@@ -56,7 +57,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name:"
+            android:text="@string/name"
             android:textStyle="bold"
             android:textSize="18sp"
             />
@@ -64,12 +65,12 @@
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name" />
+            android:hint="@string/name" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email:"
+            android:text="@string/emaill"
             android:textStyle="bold"
             android:layout_marginTop="22sp"
             android:textSize="18sp"
@@ -78,13 +79,13 @@
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/emaill"
             android:inputType="textEmailAddress"
             android:layout_marginTop="8dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Password (change to new password):"
+            android:text="@string/password_change_to_new_password"
             android:textStyle="bold"
             android:layout_marginTop="22sp"
             android:textSize="18sp"
@@ -93,13 +94,13 @@
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:layout_marginTop="8dp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm Password:"
+            android:text="@string/confirm_password"
             android:textStyle="bold"
             android:layout_marginTop="22sp"
             android:textSize="18sp"
@@ -108,14 +109,14 @@
             android:id="@+id/editTextPasswordConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
+            android:hint="@string/confirm_passwordd"
             android:inputType="textPassword"
             android:layout_marginTop="8dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Experience:"
+            android:text="@string/experience"
             android:textStyle="bold"
             android:layout_marginTop="22sp"
             android:textSize="18sp"
@@ -124,7 +125,7 @@
             android:id="@+id/editTextExperience"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Experience"
+            android:hint="@string/experience"
             android:inputType="text"
             android:layout_marginTop="8dp" />
 
@@ -132,7 +133,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Phone Number:"
+            android:text="@string/phone_numberr"
             android:textStyle="bold"
             android:layout_marginTop="22sp"
             android:textSize="18sp"
@@ -141,14 +142,14 @@
             android:id="@+id/editTextPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone number (05xxxxxxxx)"
+            android:hint="@string/phone_number_05xxxxxxxx"
             android:inputType="text"
             android:layout_marginTop="8dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Consultation Price(MAD):"
+            android:text="@string/consultation_price_mad"
             android:textStyle="bold"
             android:layout_marginTop="22sp"
             android:textSize="18sp"
@@ -157,7 +158,7 @@
             android:id="@+id/editTextConsultPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Consult Price"
+            android:hint="@string/consult_price"
             android:inputType="number"
             android:layout_marginTop="8dp" />
 
@@ -165,7 +166,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Working days:"
+            android:text="@string/working_days"
             android:textStyle="bold"
             android:layout_marginTop="22sp"
             android:textSize="18sp"
@@ -228,12 +229,6 @@
                 android:layout_marginBottom="8dp"
                 android:text="Saturday" />
 
-            <CheckBox
-                android:id="@+id/checkBoxSunday"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Sunday" />
         </LinearLayout>
 
         <TextView
@@ -243,7 +238,7 @@
             android:textStyle="bold"
             android:layout_marginTop="22sp"
             android:textSize="18sp"
-            android:text="Hour of starting:" />
+            android:text="@string/hour_of_startingg" />
 
         <LinearLayout
             android:id="@+id/startTimeLayout"
@@ -281,7 +276,7 @@
             android:textStyle="bold"
             android:layout_marginTop="22sp"
             android:textSize="18sp"
-            android:text="Hour of closing:" />
+            android:text="@string/hour_of_closingg" />
 
         <LinearLayout
             android:id="@+id/endTimeLayout"
@@ -318,7 +313,7 @@
             android:id="@+id/buttonValidate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Validate"
+            android:text="@string/validate"
             android:background="@drawable/card1_style"
             android:layout_marginTop="70dp" />
 
@@ -326,7 +321,7 @@
             android:id="@+id/buttonCancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:background="@drawable/card1_style"
             android:layout_marginBottom="50sp"
             android:layout_marginTop="20dp" />

@@ -20,10 +20,12 @@ class AuthChoice : AppCompatActivity() {
             if (userDoctorSwitch.isChecked) {
                 val intent = Intent(this, CreateAccountDoc::class.java)
                 startActivity(intent)
+                finish()
             } else {
                 // Start the "activity_auth_user" if the switch is OFF
                 val intent = Intent(this, CreateAccountPatient::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

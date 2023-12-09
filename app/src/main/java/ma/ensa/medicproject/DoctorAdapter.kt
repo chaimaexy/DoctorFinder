@@ -43,7 +43,6 @@ class DoctorAdapter(
 
         // Display doctor information
         holder.nameTextView.text = currentDoctor.name
-       holder.addressTextView.text = currentDoctor.address
 
         // Find the associated speciality for the doctor
         val specialityId = currentDoctor.specialityId

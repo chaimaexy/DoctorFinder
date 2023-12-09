@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/patient_space"
+                android:text="@string/authentication"
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:padding="5dp"
@@ -73,7 +73,7 @@
                 android:textColor="@color/blue"
                 android:textStyle="italic"
                 android:fontFamily="sans-serif-condensed"
-                android:text="Create Account >"
+                android:text="@string/create_account"
                 />
 
 
@@ -85,7 +85,6 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/bg_btn_search_doc"
                 android:text="@string/login"
-
                 android:textStyle="bold" />
 
 

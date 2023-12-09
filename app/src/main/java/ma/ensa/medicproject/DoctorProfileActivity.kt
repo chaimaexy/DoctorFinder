@@ -26,6 +26,9 @@ class DoctorProfileActivity : AppCompatActivity() {
     private lateinit var allDoctorsList: MutableList<Doctor>
     private lateinit var recyclerViewFavoriteDoctors: RecyclerView
     private  var specialitiesList: MutableList<Specialities> = mutableListOf()
+    private  var favoriteDoctorsList: MutableList<Doctor> = mutableListOf()
+    private var email: String? = null
+    private var isLoggedIn: Int? = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +42,7 @@ class DoctorProfileActivity : AppCompatActivity() {
         allDoctorsList = mutableListOf()
         fetchAllDoctorsFromDatabase()
         val isLoggedIn = intent.getIntExtra("logged", 0)
-        val email = intent.getStringExtra("email")
+        email = intent.getStringExtra("email")
 
         recyclerViewFavoriteDoctors = findViewById(R.id.recyclerViewFavoriteDoctors)
         val layoutManagerFavoriteDoctors = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -68,7 +71,9 @@ class DoctorProfileActivity : AppCompatActivity() {
 
 
         deleteButton.setOnClickListener {
+
             showDeleteConfirmation()
+
         }
 
         // Assuming userEmail is the email of the currently logged-in user
@@ -84,7 +89,7 @@ class DoctorProfileActivity : AppCompatActivity() {
                 .child("doctors")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        val favoriteDoctorsList: MutableList<Doctor> = mutableListOf()
+
 
                         for (snapshot in dataSnapshot.children) {
                             val pmdc = snapshot.value as? String
@@ -155,6 +160,14 @@ class DoctorProfileActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("email", email)
+        intent.putExtra("logged", 1)
+        startActivity(intent)
+        finish()
+    }
     private fun showDeleteConfirmation() {
         val snackbar = Snackbar.make(
             findViewById(android.R.id.content),

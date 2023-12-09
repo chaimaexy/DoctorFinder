@@ -3,6 +3,8 @@ package ma.ensa.medicproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var CreateAccountText: TextView
     private var email: String? = null
     private var isLoggedIn: Int = 0
+    private var doubleBackToExitPressedOnce = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -114,13 +117,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
-
-
-
-
     }
 
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
 
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+        // Reset the flag after 2 seconds
+        Handler(Looper.getMainLooper()).postDelayed({
+            doubleBackToExitPressedOnce = false
+        }, 2000)
+    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
@@ -129,12 +141,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 checkUserTypeAndNavigate()
                 return true
             }
+            R.id.searchDoctor -> {
+
+                val intent = Intent(this, SearchDoctorBySpeciality::class.java)
+                intent.putExtra("logged", isLoggedIn)
+                intent.putExtra("email",email )
+                startActivity(intent)
+                finish()
+            }
+            R.id.searchLocation -> {
+                val intent = Intent(this, ChooseSpecialityActivity::class.java)
+                intent.putExtra("logged", isLoggedIn)
+                intent.putExtra("email",email )
+                startActivity(intent)
+                finish()
+            }
+            R.id.settings -> {
+//                val intent = Intent(this, SettingsActivity::class.java)
+//                intent.putExtra("logged", isLoggedIn)
+//                intent.putExtra("email",email )
+//                startActivity(intent)
+//                finish()
+            }
             R.id.logout -> {
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, MainActivity::class.java)
-
                 intent.putExtra("logged", 0)
                 startActivity(intent)
+                finish()
             }
         }
         val drawer: DrawerLayout = findViewById(R.id.drawerLayout)
@@ -184,6 +218,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         intent.putExtra("logged", 1)
         intent.putExtra("email",email )
         startActivity(intent)
+        finish()
     }
 
     private fun navigateToUserProfile() {
@@ -192,6 +227,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         intent.putExtra("logged", 1)
         intent.putExtra("email",email )
         startActivity(intent)
+        finish()
     }
 
 }

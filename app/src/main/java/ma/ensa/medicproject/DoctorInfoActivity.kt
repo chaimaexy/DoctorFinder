@@ -33,7 +33,6 @@ class DoctorInfoActivity : AppCompatActivity() {
     private lateinit var doctorGender: TextView
     private lateinit var consultPrice: TextView
     private lateinit var consultPriceInfo: TextView
-    private lateinit var address: TextView
     private lateinit var city: TextView
     private lateinit var workDays: TextView
     private lateinit var startTime: TextView
@@ -59,7 +58,6 @@ class DoctorInfoActivity : AppCompatActivity() {
         callDoctor =  findViewById(R.id.callDoctor)
         consultPrice= findViewById(R.id.doctorPriceTextView)
         consultPriceInfo= findViewById(R.id.doctorPriceInfoTextView)
-       // address= findViewById(R.id.doctorLocationTextView)
         city= findViewById(R.id.doctorCityTextView)
         workDays= findViewById(R.id.doctorDaysTextView)
         startTime= findViewById(R.id.doctorStartTextView)

@@ -27,6 +27,9 @@ class UserProfileActivity : AppCompatActivity() {
     private lateinit var allDoctorsList: MutableList<Doctor>
     private lateinit var recyclerViewFavoriteDoctors: RecyclerView
     private  var specialitiesList: MutableList<Specialities> = mutableListOf()
+    private var email: String? = null
+    private var isLoggedIn: Int? = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profile)
@@ -38,8 +41,8 @@ class UserProfileActivity : AppCompatActivity() {
         deleteButton = findViewById(R.id.deletePatient)
         allDoctorsList = mutableListOf()
         fetchAllDoctorsFromDatabase()
-        val isLoggedIn = intent.getIntExtra("logged", 0)
-        val email = intent.getStringExtra("email" )
+        isLoggedIn = intent.getIntExtra("logged", 0)
+        email = intent.getStringExtra("email" )
 
         recyclerViewFavoriteDoctors = findViewById(R.id.recyclerViewFavoriteDoctors)
         val layoutManagerFavoriteDoctors = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -53,6 +56,7 @@ class UserProfileActivity : AppCompatActivity() {
             intent.putExtra("email",email )
 
             startActivity(intent)
+            finish()
         }
 
         // Set up the user's information
@@ -63,6 +67,7 @@ class UserProfileActivity : AppCompatActivity() {
             intent.putExtra("logged", 1)
             intent.putExtra("email", email)
             startActivity(intent)
+            finish()
         }
 
         deleteButton.setOnClickListener {
@@ -125,6 +130,7 @@ class UserProfileActivity : AppCompatActivity() {
                                             intent.putExtra("logged", isLoggedIn)
                                             intent.putExtra("inProfileUser", 1)
                                             startActivity(intent)
+
                                         }
 
 // Set the new adapter to the RecyclerView
@@ -157,6 +163,14 @@ class UserProfileActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("email", email)
+        intent.putExtra("logged", 1)
+        startActivity(intent)
+        finish()
+    }
     private fun showDeleteConfirmation() {
         val snackbar = Snackbar.make(
             findViewById(android.R.id.content),

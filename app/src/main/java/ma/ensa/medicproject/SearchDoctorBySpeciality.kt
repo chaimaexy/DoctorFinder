@@ -169,6 +169,7 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
                         intent.putExtra("speciality", associatedSpeciality.specName)
                     }
                     startActivity(intent)
+
                 }
                 recyclerViewDoctors.adapter = doctorAdapter
             }
@@ -201,26 +202,53 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
             R.id.home -> {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("email", email)
-                intent.putExtra("logged", 1)
+                intent.putExtra("logged", isLoggedIn)
                 startActivity(intent)
+
                 return true
             }
             R.id.Profile -> {
                 checkUserTypeAndNavigate()
                 return true
             }
+            R.id.searchDoctor -> {
+
+
+            }
+            R.id.searchLocation -> {
+                val intent = Intent(this, ChooseSpecialityActivity::class.java)
+                intent.putExtra("logged", isLoggedIn)
+                intent.putExtra("email",email )
+                startActivity(intent)
+
+            }
+            R.id.settings -> {
+//                val intent = Intent(this, SettingsActivity::class.java)
+//                intent.putExtra("logged", isLoggedIn)
+//                intent.putExtra("email",email )
+//                startActivity(intent)
+//                finish()
+            }
             R.id.logout -> {
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, MainActivity::class.java)
-
                 intent.putExtra("logged", 0)
                 startActivity(intent)
+                finish()
             }
         }
         val drawer: DrawerLayout = findViewById(R.id.drawerLayout)
         drawer.closeDrawer(GravityCompat.START)
 
         return false
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("email", email)
+        intent.putExtra("logged", isLoggedIn)
+        startActivity(intent)
+        finish()
     }
     private fun checkUserTypeAndNavigate() {
         val user = FirebaseAuth.getInstance().currentUser
@@ -262,6 +290,7 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
         intent.putExtra("logged", 1)
         intent.putExtra("email",email )
         startActivity(intent)
+        finish()
     }
 
     private fun navigateToUserProfile() {
@@ -270,6 +299,7 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
         intent.putExtra("logged", 1)
         intent.putExtra("email",email )
         startActivity(intent)
+        finish()
     }
 }
 

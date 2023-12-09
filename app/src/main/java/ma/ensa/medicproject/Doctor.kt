@@ -13,7 +13,6 @@ data class Doctor(
     val specialityId: Int = 0,
     var consultPrice: String = "",
     val consultPriceInfo: String = "",
-    val address: String = "",
     var location: String = "",
     var latitude: Double = 0.0,
     var longitude: Double = 0.0,
@@ -32,7 +31,6 @@ data class Doctor(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readInt(),
-        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
@@ -56,7 +54,6 @@ data class Doctor(
         parcel.writeInt(specialityId)
         parcel.writeString(consultPrice)
         parcel.writeString(consultPriceInfo)
-        parcel.writeString(address)
         parcel.writeString(location)
         parcel.writeDouble(latitude)
         parcel.writeDouble(longitude)

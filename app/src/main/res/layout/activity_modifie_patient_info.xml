@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Modifie Profile"
+                android:text="@string/modifie_profile"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="22sp"
-            android:text="Name:"
+            android:text="@string/name"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -57,13 +57,13 @@
             android:id="@+id/namePatientField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name" />
+            android:hint="@string/name" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="22sp"
-            android:text="Email:"
+            android:text="@string/emaill"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -72,14 +72,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="22sp"
-            android:text="Password (enter now password):"
+            android:text="@string/password_enter_new_password"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -88,12 +88,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm Password:"
+            android:text="@string/confirm_password"
             android:textStyle="bold"
             android:layout_marginTop="22sp"
             android:textSize="18sp"
@@ -102,7 +102,7 @@
             android:id="@+id/editTextPasswordConfirmUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
+            android:hint="@string/confirm_passwordd"
             android:inputType="textPassword"
             android:layout_marginTop="8dp" />
 
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:background="@drawable/card1_style"
-            android:text="Validate" />
+            android:text="@string/validate" />
 
         <Button
             android:id="@+id/buttonCancel"
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/card1_style"
-            android:text="Cancel" />
+            android:text="@string/cancel" />
     </LinearLayout>
 
     </RelativeLayout>

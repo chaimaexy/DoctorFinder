@@ -19,10 +19,9 @@
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="25sp"
-            android:visibility="gone"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:padding="25sp"
             app:srcCompat="@drawable/back" />
 
 
@@ -31,7 +30,6 @@
             android:id="@+id/DoctorImage"
             android:layout_width="match_parent"
             android:layout_height="170sp"
-            android:layout_marginTop="80sp"
             android:layout_below="@id/back"
             android:padding="20sp"
             app:srcCompat="@drawable/homeimg" />
@@ -66,7 +64,7 @@
                 android:id="@+id/favoriteText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Add to favorites"
+                android:text="@string/add_to_favorites"
                 android:textSize="16sp"
                 android:gravity="center"
                 android:textStyle="bold"/>
@@ -84,7 +82,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Personnal information"
+                    android:text="@string/personnal_information"
                     android:textSize="22sp"
                     android:layout_marginTop="30sp"
                     android:textStyle="bold"
@@ -109,7 +107,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="Name: "/>
+                            android:text="@string/name"/>
 
                         <TextView
                             android:id="@+id/doctorNameTextView"
@@ -117,7 +115,7 @@
                             android:layout_height="wrap_content"
                             android:padding="7sp"
                             android:textSize="14sp"
-                            android:text="name"/>
+                            />
 
                     </LinearLayout>
 
@@ -132,7 +130,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="Email: "/>
+                            android:text="@string/emaill"/>
 
                         <TextView
                             android:id="@+id/doctorEmailTextView"
@@ -140,7 +138,7 @@
                             android:layout_height="wrap_content"
                             android:padding="7sp"
                             android:textSize="14sp"
-                            android:text="email"/>
+                            />
 
                     </LinearLayout>
 
@@ -155,15 +153,14 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="Gender: "/>
+                            android:text="@string/gender"/>
 
                         <TextView
                             android:id="@+id/doctorGenderTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7sp"
-                            android:textSize="16sp"
-                            android:text="gender"/>
+                            android:textSize="16sp"/>
                     </LinearLayout>
 
 
@@ -172,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20sp"
-                    android:text="Professional information"
+                    android:text="@string/professional_information"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -199,7 +196,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="Experience: "/>
+                            android:text="@string/experience"/>
 
                         <TextView
                             android:id="@+id/doctorExperienceTextView"
@@ -220,7 +217,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="Speciality: "/>
+                            android:text="@string/speciality"/>
 
                         <TextView
                             android:id="@+id/doctorSpecialityTextView"
@@ -238,7 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20sp"
-                    android:text="Health care facility information"
+                    android:text="@string/health_care_facility_information"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -264,7 +261,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="Price: "/>
+                            android:text="@string/price"/>
 
                         <TextView
                             android:id="@+id/doctorPriceTextView"
@@ -286,7 +283,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="Price Info: "/>
+                            android:text="@string/price_info"/>
 
                         <TextView
                             android:id="@+id/doctorPriceInfoTextView"
@@ -307,7 +304,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="Location: "/>
+                            android:text="@string/location"/>
 
                         <TextView
                             android:id="@+id/doctorLocationTextView"
@@ -328,7 +325,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="City: "/>
+                            android:text="@string/city"/>
 
                         <TextView
                             android:id="@+id/doctorCityTextView"
@@ -345,7 +342,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20sp"
-                    android:text="Working Schedule"
+                    android:text="@string/working_schedule"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -371,7 +368,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="Woring Days: "/>
+                            android:text="@string/woring_days"/>
 
                         <TextView
                             android:id="@+id/doctorDaysTextView"
@@ -392,7 +389,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="From: "/>
+                            android:text="@string/from"/>
 
                         <TextView
                             android:id="@+id/doctorStartTextView"
@@ -413,7 +410,7 @@
                             android:padding="7sp"
                             android:textStyle="bold"
                             android:textSize="16sp"
-                            android:text="To: "/>
+                            android:text="@string/to"/>
 
                         <TextView
                             android:id="@+id/doctorFinishTextView"
@@ -435,10 +432,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20sp"
-                        android:background="@color/blue"
+                        android:background="@drawable/direction"
                         android:drawableLeft="@drawable/location"
-                        android:padding="20sp"
-                        android:text="show directions"
+                        android:padding="18sp"
+                        android:text="@string/show_directions"
                         android:textSize="20sp" />
                 <Button
                     android:id="@+id/callDoctor"
@@ -446,10 +443,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20sp"
                     android:layout_marginBottom="70sp"
-                    android:background="@color/green"
-                    android:drawableLeft="@drawable/call"
-                    android:padding="20sp"
-                    android:text="CALL now"
+                    android:background="@drawable/call"
+                    android:drawableLeft="@drawable/phone"
+                    android:padding="18sp"
+                    android:text="@string/call_now"
                     android:textSize="20sp" />
 
 

@@ -44,6 +44,7 @@ class CreateAccountPatient : AppCompatActivity() {
         cancel.setOnClickListener {
             val intent = Intent(this, AuthUser::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

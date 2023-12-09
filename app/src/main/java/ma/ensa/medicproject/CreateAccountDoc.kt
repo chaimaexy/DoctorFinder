@@ -81,6 +81,7 @@ class CreateAccountDoc : AppCompatActivity() {
         btnBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
         //
         val btnNext: Button = findViewById(R.id.doctor_sign_in_button1)
@@ -103,6 +104,7 @@ class CreateAccountDoc : AppCompatActivity() {
                     intent.putExtra("doctorGender", selectedGender)
                     intent.putExtra("selectedImage", selectedImage)
                     startActivity(intent)
+                    finish()
                 }else{
                     Toast.makeText(this, "Confirmation of password incorrect", Toast.LENGTH_SHORT).show()
                 }

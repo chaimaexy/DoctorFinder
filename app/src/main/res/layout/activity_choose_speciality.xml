@@ -41,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="Doctors Near Me"
+                    android:text="@string/doctors_near_me"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -75,17 +75,45 @@
             android:layout_marginBottom="20sp"
             android:gravity="center"
             android:textColor="@color/blue"
-            android:text="Welcome to MedicFinder!\n\nTo help you find the right doctor, please choose a speciality below and tap 'Search'."
+            android:text="@string/welcome_to_medicfinder_n_nto_help_you_find_the_right_doctor_please_choose_a_speciality_below_and_tap_search"
             android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/location" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_city"
+                android:textSize="19sp"
+                android:padding="10sp"
+                android:layout_marginRight="10sp"
+                />
+
+            <Spinner
+                android:id="@+id/spinnerCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:prompt="@string/select_Location" />
+
+        </LinearLayout>
 
         <Spinner
             android:id="@+id/spinnerSpecialty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
             android:padding="10sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="30sp"
             android:prompt="@string/select_specialty"
             android:spinnerMode="dropdown" />
+
 
         <Button
             android:id="@+id/doctor_sign_in_button1"
@@ -96,10 +124,11 @@
 
             android:background="@drawable/bg_btn_search_doc"
             android:gravity="center"
-            android:text="Search "
+            android:text="@string/search"
             android:drawableRight="@drawable/go"
             android:padding="14sp"
             android:textStyle="bold" />
+
 
 
 

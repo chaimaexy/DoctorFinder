@@ -21,6 +21,7 @@ class NavHeader : AppCompatActivity() {
         Login.setOnClickListener {
             val intent = Intent(this , AuthChoice::class.java)
             startActivity(intent)
+            finish()
         }
 
     }

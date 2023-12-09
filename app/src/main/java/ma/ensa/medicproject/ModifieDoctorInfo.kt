@@ -28,7 +28,6 @@ class ModifieDoctorInfo : AppCompatActivity() {
     private lateinit var thursdayCheckBox: CheckBox
     private lateinit var fridayCheckBox: CheckBox
     private lateinit var saturdayCheckBox: CheckBox
-    private lateinit var sundayCheckBox: CheckBox
     private lateinit var validateButton: Button
     private lateinit var cancelButton: Button
     private lateinit var hourStart: NumberPicker
@@ -54,7 +53,6 @@ class ModifieDoctorInfo : AppCompatActivity() {
         thursdayCheckBox = findViewById(R.id.checkBoxThursday)
         fridayCheckBox = findViewById(R.id.checkBoxFriday)
         saturdayCheckBox = findViewById(R.id.checkBoxSaturday)
-        sundayCheckBox = findViewById(R.id.checkBoxSunday)
         validateButton = findViewById(R.id.buttonValidate)
         cancelButton = findViewById(R.id.buttonCancel)
 
@@ -124,7 +122,6 @@ class ModifieDoctorInfo : AppCompatActivity() {
                             thursdayCheckBox.isChecked = it.selectedDays.contains("Thursday")
                             fridayCheckBox.isChecked = it.selectedDays.contains("Friday")
                             saturdayCheckBox.isChecked = it.selectedDays.contains("Saturday")
-                            sundayCheckBox.isChecked = it.selectedDays.contains("Sunday")
 
 
                             // Initialize NumberPickers for startTime and endTime
@@ -203,7 +200,6 @@ class ModifieDoctorInfo : AppCompatActivity() {
         if (thursdayCheckBox.isChecked) selectedDays.add("Thursday")
         if (fridayCheckBox.isChecked) selectedDays.add("Friday")
         if (saturdayCheckBox.isChecked) selectedDays.add("Saturday")
-        if (sundayCheckBox.isChecked) selectedDays.add("Sunday")
 
         return selectedDays
     }
