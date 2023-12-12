@@ -6,14 +6,42 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/splash_background"
+        android:background="@color/background"
         tools:context=".SplashActivity">
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:gravity="center"
+     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/logoImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@drawable/home" />
+     <ImageView
+         android:id="@+id/logoImageView"
+         android:layout_width="248dp"
+         android:layout_height="220dp"
+         android:layout_centerInParent="true"
+         android:src="@drawable/homeimg" />
+
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="83dp"
+
+         android:fontFamily="sans-serif-smallcaps"
+         android:gravity="center"
+         android:text="MedicFinder"
+         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+         android:textColor="@color/black"
+         android:textSize="50sp" />
+
+     <TextView
+         android:layout_width="match_parent"
+         android:layout_height="53dp"
+         android:fontFamily="sans-serif-condensed"
+         android:gravity="center"
+         android:padding="10sp"
+         android:text="BRINGING HEALTH CARE CLOSER TO YOU"
+         android:textColor="@color/blue"
+         android:textSize="20sp" />
+ </LinearLayout>
+
     </RelativeLayout>
 

@@ -70,7 +70,7 @@ class ChooseSpecialityActivity : AppCompatActivity() {
         spinnerLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedCity = parent?.getItemAtPosition(position).toString()
-                Toast.makeText(this@ChooseSpecialityActivity, "Selected City: $selectedCity", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(this@ChooseSpecialityActivity, "Selected City: $selectedCity", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -168,7 +168,7 @@ class ChooseSpecialityActivity : AppCompatActivity() {
                     if(loc  != null){
                         latitude = loc.latitude.toDouble()
                         longitude = loc.longitude.toDouble()
-                        Toast.makeText(this, "lat: $latitude", Toast.LENGTH_SHORT).show()
+                      //  Toast.makeText(this, "lat: $latitude", Toast.LENGTH_SHORT).show()
                         val geocoder = Geocoder(this, Locale.getDefault())
                         val addresses: List<Address>? = geocoder.getFromLocation(
                             loc .latitude.toDouble(),

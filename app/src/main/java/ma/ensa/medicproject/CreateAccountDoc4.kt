@@ -99,10 +99,10 @@ class  CreateAccountDoc4 : AppCompatActivity() {
             // Check if selectedImageUri is not null before uploading
             selectedImageUri?.let {
                 imageUploader.uploadImage(it, doctorPMDC)
-                Toast.makeText(this@CreateAccountDoc4, "image upload succesful", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(this@CreateAccountDoc4, "image upload succesful", Toast.LENGTH_SHORT).show()
 
             } ?: run {
-                Toast.makeText(this@CreateAccountDoc4, "No image found", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(this@CreateAccountDoc4, "No image found", Toast.LENGTH_SHORT).show()
             }
             onNextButtonClick()
             val intent = Intent(this, MainActivity::class.java)

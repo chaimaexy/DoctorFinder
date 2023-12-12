@@ -85,7 +85,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             CreateAccountButton.visibility = View.GONE
 
             //menu stuff
-            headerView.findViewById<TextView>(R.id.identif).text ="$email"
+           // headerView.findViewById<TextView>(R.id.identif).text ="$email"
+            headerView.findViewById<TextView>(R.id.identif).text = "MedicFinder"
             headerView.findViewById<Button>(R.id.Login).visibility =View.GONE
             // Update menu items based on login status
             menu.findItem(R.id.Profile).isVisible = true
@@ -94,7 +95,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }else{
             CreateAccountText.visibility =View.VISIBLE
             CreateAccountButton.visibility =View.VISIBLE
-            headerView.findViewById<TextView>(R.id.identif).text = "Doctor Finder"
+            headerView.findViewById<TextView>(R.id.identif).text = "MedicFinder"
             headerView.findViewById<Button>(R.id.Login).visibility =View.VISIBLE
             val loginButton: Button = headerView.findViewById(R.id.Login)
             headerView.setOnClickListener {
@@ -157,11 +158,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 finish()
             }
             R.id.settings -> {
-//                val intent = Intent(this, SettingsActivity::class.java)
-//                intent.putExtra("logged", isLoggedIn)
-//                intent.putExtra("email",email )
-//                startActivity(intent)
-//                finish()
+                val intent = Intent(this, SettingsActivity::class.java)
+                intent.putExtra("logged", isLoggedIn)
+                intent.putExtra("email",email )
+                startActivity(intent)
+
             }
             R.id.logout -> {
                 FirebaseAuth.getInstance().signOut()

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MedicProject</string>
+    <string name="authentication">Authentification</string>
+    <string name="navigation_drawer_open">Ouvrir</string>
+    <string name="navigation_drawer_close">Fermer</string>
+    <string name="select_day_prompt">Sélectionner un jour</string>
+    <string name="start_time_hint">Heure de début</string>
+    <string name="end_time_hint">Heure de fin</string>
+    <string name="save_schedule">Enregistrer horaire</string>
+    <string name="select_specialty">Sélectionnez une spécialité :</string>
+    <string name="select_city">Sélectionnez une ville :</string>
+    <string name="select_Location">Ville</string>
+    <string name="patient_space">Espace patient</string>
+    <string name="login">Connexion</string>
+    <string name="password">Mot de passe</string>
+    <string name="email">E-mail</string>
+    <string name="username">Nom utilisateur</string>
+    <string name="your_are_a">Vous êtes :</string>
+    <string name="doctor_space">Espace médecin</string>
+    <string name="create_account">Créer un compte</string>
+    <string name="search_enter_name_or_gender">Rechercher (nom, genre ou ville)</string>
+    <string-array name="specialties_array">
+        <item>Cardiologue</item>
+        <item>Dermatologue</item>
+        <item>Chirurgien orthopédique</item>
+    </string-array>
+    <string-array name="moroccan_cities">
+        <item>Casablanca</item>
+        <item>Rabat</item>
+        <item>Marrakech</item>
+        <item>Fès</item>
+        <item>Tanger</item>
+        <item>Agadir</item>
+        <item>Meknès</item>
+        <item>Oujda</item>
+        <item>Kenitra</item>
+        <item>Tétouan</item>
+        <item>Essaouira</item>
+        <item>Nador</item>
+        <item>El Jadida</item>
+        <item>Khouribga</item>
+        <item>Béni Mellal</item>
+        <item>Errachidia</item>
+        <item>Taza</item>
+        <item>Settat</item>
+        <item>Larache</item>
+        <!-- Add more cities as needed -->
+    </string-array>
+    <string name="title_activity_map">Activité de la carte</string>
+    <string name="patient">Patient</string>
+    <string name="doctor">Médecin</string>
+    <string name="get_started">COMMENCER</string>
+    <string name="forgot_password">Mot de passe oublié ?</string>
+    <string name="welcome_to_medicfinder_n_nto_help_you_find_the_right_doctor_please_choose_a_speciality_below_and_tap_search">hii2</string>
+    <string name="search">Rechercher</string>
+    <string name="doctors_near_me">Médecins à proximité</string>
+    <string name="are_you_a_doctor">Êtes-vous un médecin ?</string>
+    <string name="step_1_4_personnal_info">Étape 1/4 : Infos personnelles</string>
+    <string name="full_name">Nom complet</string>
+    <string name="enter_email_abc_xyz_com">Entrer l\'e-mail : abc@xyz.com</string>
+    <string name="male">Homme</string>
+    <string name="female">Femme</string>
+    <string name="profile_picture">Photo de profil</string>
+    <string name="add_profile_picture">Ajouter une photo de profil</string>
+    <string name="next">Suivant</string>
+    <string name="step_2_4_professional_info">Étape 2/4 : Infos professionnelles</string>
+    <string name="number_of_medical_licence">Numéro de licence médicale</string>
+    <string name="experience_years_1_year_2_years">Années d\'expérience (1 an, 2 ans, ...)*</string>
+    <string name="step_4_4_working_hours">Étape 4/4 : Horaires de travail</string>
+    <string name="days_of_work">Jours de travail :</string>
+    <string name="hour_of_starting">Heure de début :</string>
+    <string name="hour_of_closing">Heure de fermeture :</string>
+    <string name="additional_info">Informations supplémentaires... *</string>
+    <string name="submit">Soumettre</string>
+    <string name="step_3_4_health_center_information">Étape 3/4 : Informations sur le centre de santé</string>
+    <string name="phone_number">Numéro de téléphone</string>
+    <string name="consultation_price">Prix de consultation</string>
+    <string name="attention_your">hi</string>
+    <string name="provide_your_health_facility_phone_number_to_enable_patients_to_call_and_make_a_appointment">** Fournissez votre numéro de téléphone pour permettre aux patients d\'appeler et de prendre rendez-vous</string>
+    <string name="add_to_favorites">Ajouter aux favoris</string>
+    <string name="personnal_information">Informations personnelles</string>
+    <string name="name">Nom :</string>
+    <string name="emaill">E-mail :</string>
+    <string name="gender">Genre :</string>
+    <string name="professional_information">Informations professionnelles</string>
+    <string name="experience">Expérience :</string>
+    <string name="speciality">Spécialité :</string>
+    <string name="health_care_facility_information">Informations sur le centre de soins</string>
+    <string name="price">Prix :</string>
+    <string name="price_info">Infos sur le prix :</string>
+    <string name="location">Emplacement :</string>
+    <string name="city">Ville :</string>
+    <string name="working_schedule">Horaires de travail</string>
+    <string name="woring_days">Jours de travail :</string>
+    <string name="from">De :</string>
+    <string name="to">À :</string>
+    <string name="show_directions">Afficher les directions</string>
+    <string name="call_now">APPELER maintenant</string>
+    <string name="doctor_profile">Profil du médecin</string>
+    <string name="bonjour_dr">Bonjour Dr.</string>
+    <string name="modifie_personnal_information">Modifier les informations personnelles</string>
+    <string name="_0_people_have_seen_your_account_so_far">0 personnes ont vu votre compte jusqu\'à présent</string>
+    <string name="your_favorite_doctors">Vos médecins préférés</string>
+    <string name="delete_account">Supprimer le compte</string>
+    <string name="you_are_a_patient_nfeeling_tired_n_find_a_doctor">Vous êtes un patient ?\nSENTIR LA FATIGUE ?\n TROUVER UN MÉDECIN.</string>
+    <string name="select_search_area">SÉLECTIONNER UNE ZONE DE RECHERCHE</string>
+    <string name="select_doctor_specialty">SÉLECTIONNER LA SPÉCIALITÉ DU MÉDECIN</string>
+    <string name="view_availible_doctors">Voir les médecins disponibles</string>
+    <string name="search_nearby_doctors">Rechercher des médecins à proximité</string>
+    <string name="you_are_a_doctor_n_create_a_publicity_for_your_healthcare_office">Vous êtes un médecin ?\n Créez une publicité pour votre cabinet médical</string>
+    <string name="password_change_to_new_password">Mot de passe (changer vers un nouveau mot de passe) :</string>
+    <string name="confirm_password">Confirmer le mot de passe :</string>
+    <string name="confirm_passwordd">Confirmer le mot de passe</string>
+    <string name="phone_numberr">Numéro de téléphone :</string>
+    <string name="phone_number_05xxxxxxxx">Numéro de téléphone (05xxxxxxxx)</string>
+    <string name="consultation_price_mad">Prix de consultation (MAD) :</string>
+    <string name="consult_price">Prix de consultation</string>
+    <string name="working_days">Jours de travail :</string>
+    <string name="hour_of_startingg">Heure de début :</string>
+    <string name="hour_of_closingg">Heure de fermeture :</string>
+    <string name="validate">Valider</string>
+    <string name="cancel">Annuler</string>
+    <string name="modifie_profile">Modifier le profil</string>
+    <string name="password_enter_new_password">Mot de passe (entrer un nouveau mot de passe) :</string>
+    <string name="choose_category">Choisir une catégorie</string>
+    <string name="top_doctors">Meilleurs médecins</string>
+    <string name="patient_profile">Profil du patient</string>
+    <string name="bonjour">Bonjour !</string>
+    <string name="select_language">Langue:</string>
+    <string name="home">Accueil</string>
+    <string name="my_profile">Mon Profil</string>
+    <string name="doctors_list">Liste des Médecins</string>
+    <string name="settings">Paramètres</string>
+    <string name="logout">Déconnexion</string>
+    
+    <string-array name="language_options">
+        <item>Select language</item>
+        <item>English</item>
+        <item>Francais</item>
+    </string-array>
+</resources>

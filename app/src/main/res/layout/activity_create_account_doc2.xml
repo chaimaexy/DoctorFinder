@@ -47,15 +47,15 @@
 
                 <ImageButton
                     android:id="@+id/btnCancel"
-                    android:layout_width="47dp"
-                    android:layout_height="41dp"
+                    android:layout_width="79dp"
+                    android:layout_height="49dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="56dp"
+                    android:layout_marginStart="34dp"
                     android:layout_marginTop="7dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginBottom="0dp"
                     android:layout_toEndOf="@+id/toolbarTitle"
                     android:background="?android:attr/selectableItemBackground"
                     android:src="@drawable/cancel" />

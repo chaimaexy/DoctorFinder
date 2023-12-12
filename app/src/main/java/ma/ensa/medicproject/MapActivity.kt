@@ -55,7 +55,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerC
         // Initialize the Realtime Database reference
         database = FirebaseDatabase.getInstance().reference.child("Doctors")
         // Display a toast with the collected information
-        Toast.makeText(this, "current: ${latitude} , ${longitude}  ", Toast.LENGTH_LONG).show()
+       // Toast.makeText(this, "current: ${latitude} , ${longitude}  ", Toast.LENGTH_LONG).show()
         // Fetch doctors based on selectedCity and selectedSpecialityId
        fetchDoctors(selectedCity, selectedSpecialityId)
     }

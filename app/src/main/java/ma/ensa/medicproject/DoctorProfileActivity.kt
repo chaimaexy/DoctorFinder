@@ -79,9 +79,9 @@ class DoctorProfileActivity : AppCompatActivity() {
         // Assuming userEmail is the email of the currently logged-in user
         val userEmail = FirebaseAuth.getInstance().currentUser?.email
         val encodedEmail = email?.replace(".", ",")
-        Toast.makeText(this, encodedEmail, Toast.LENGTH_SHORT).show()
+       // Toast.makeText(this, encodedEmail, Toast.LENGTH_SHORT).show()
         val databaseReferenceFavoriteDoctors = FirebaseDatabase.getInstance().getReference("Favorites")
-        Toast.makeText(this, email, Toast.LENGTH_SHORT).show()
+       // Toast.makeText(this, email, Toast.LENGTH_SHORT).show()
         // ...
 
         if (userEmail != null && encodedEmail != null) {
@@ -93,7 +93,7 @@ class DoctorProfileActivity : AppCompatActivity() {
 
                         for (snapshot in dataSnapshot.children) {
                             val pmdc = snapshot.value as? String
-                            Toast.makeText(this@DoctorProfileActivity, pmdc, Toast.LENGTH_SHORT).show()
+                         //   Toast.makeText(this@DoctorProfileActivity, pmdc, Toast.LENGTH_SHORT).show()
                             // Use the Firebase query to find the doctor with the specified pmdc
                             val doctorsReference = FirebaseDatabase.getInstance().getReference("Doctors")
                             doctorsReference.orderByChild("pmdc").equalTo(pmdc)

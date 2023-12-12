@@ -83,7 +83,7 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
         spinnerLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedCity = parent?.getItemAtPosition(position).toString()
-                Toast.makeText(this@CreateAccoutDoc3, "Selected City: $selectedCity", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(this@CreateAccoutDoc3, "Selected City: $selectedCity", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -195,7 +195,7 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
 
 
     override fun onLocationChanged(location: Location) {
-       Toast.makeText(this, ""+location.latitude +","+location.longitude , Toast.LENGTH_SHORT).show()
+      // Toast.makeText(this, ""+location.latitude +","+location.longitude , Toast.LENGTH_SHORT).show()
         val geocoder = Geocoder(this@CreateAccoutDoc3, Locale.getDefault())
         try {
             val addresses: List<Address>? = geocoder.getFromLocation(
@@ -205,9 +205,9 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
             )
             if (!addresses.isNullOrEmpty()) {
                 val cityName: String = addresses[0].locality ?: "Unknown City"
-                Toast.makeText(this, "Current City: $cityName", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(this, "Current City: $cityName", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "City information not available", Toast.LENGTH_SHORT).show()
+              //  Toast.makeText(this, "City information not available", Toast.LENGTH_SHORT).show()
             }
             if (!addresses.isNullOrEmpty()) {
                 val address: String = addresses[0].getAddressLine(0)

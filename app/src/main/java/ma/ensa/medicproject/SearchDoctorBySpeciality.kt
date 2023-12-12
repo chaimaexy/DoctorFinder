@@ -223,11 +223,10 @@ class SearchDoctorBySpeciality : AppCompatActivity(), NavigationView.OnNavigatio
 
             }
             R.id.settings -> {
-//                val intent = Intent(this, SettingsActivity::class.java)
-//                intent.putExtra("logged", isLoggedIn)
-//                intent.putExtra("email",email )
-//                startActivity(intent)
-//                finish()
+                val intent = Intent(this, SettingsActivity::class.java)
+                intent.putExtra("logged", isLoggedIn)
+                intent.putExtra("email",email )
+                startActivity(intent)
             }
             R.id.logout -> {
                 FirebaseAuth.getInstance().signOut()
