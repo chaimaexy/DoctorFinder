@@ -246,6 +246,17 @@
                 android:gravity="left"
                 android:text="@string/provide_your_health_facility_phone_number_to_enable_patients_to_call_and_make_a_appointment"
                 />
+
+
+
+            <ImageView
+                android:id="@+id/imageViewSelectedImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars"
+                android:visibility="gone"/>
+
+
             <Button
                 android:id="@+id/doctor_sign_in_button"
                 android:layout_width="200sp"
@@ -257,6 +268,7 @@
                 android:padding="10sp"
                 android:text="@string/next"
                 android:textStyle="bold" />
+
 
         </LinearLayout>
 

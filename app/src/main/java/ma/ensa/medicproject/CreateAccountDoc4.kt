@@ -16,7 +16,6 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class  CreateAccountDoc4 : AppCompatActivity() {
@@ -32,17 +31,17 @@ class  CreateAccountDoc4 : AppCompatActivity() {
     private lateinit var consultPrice: String
     private lateinit var consultPriceInfo: String
     private lateinit var location: String
-    private lateinit var doctorPhone : String
     private lateinit var selectedCity: String
-    private  var longitude : Double = 0.0
-    private  var latitude : Double = 0.0
+    private lateinit var doctorPhone: String
+    //
     private lateinit var checkBoxMonday: CheckBox
     private lateinit var checkBoxTuesday: CheckBox
     private lateinit var checkBoxWednesday: CheckBox
     private lateinit var checkBoxThursday: CheckBox
     private lateinit var checkBoxFriday: CheckBox
     private lateinit var checkBoxSaturday: CheckBox
-
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
     private lateinit var hourStartPicker: NumberPicker
     private lateinit var minuteStartPicker: NumberPicker
     private lateinit var hourEndPicker: NumberPicker
@@ -82,11 +81,10 @@ class  CreateAccountDoc4 : AppCompatActivity() {
         consultPrice = intent.getStringExtra("consultPrice") ?: ""
         consultPriceInfo = intent.getStringExtra("consultPriceInfo") ?: ""
         location = intent.getStringExtra("location") ?: ""
-        doctorPhone = intent.getStringExtra("doctorPhone") ?: ""
         selectedCity = intent.getStringExtra("selectedCity") ?: ""
-
-        val latitude = intent.getDoubleExtra("latitude", 0.0)
-        val longitude = intent.getDoubleExtra("longitude", 0.0)
+        doctorPhone = intent.getStringExtra("doctorPhone") ?: ""
+        latitude = intent.getDoubleExtra("latitude", 0.0)
+        longitude = intent.getDoubleExtra("longitude", 0.0)
 
 
         // Set up NumberPickers
@@ -102,16 +100,16 @@ class  CreateAccountDoc4 : AppCompatActivity() {
               //  Toast.makeText(this@CreateAccountDoc4, "image upload succesful", Toast.LENGTH_SHORT).show()
 
             } ?: run {
-              //  Toast.makeText(this@CreateAccountDoc4, "No image found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CreateAccountDoc4, "No image found", Toast.LENGTH_SHORT).show()
             }
             onNextButtonClick()
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("doctorPMDC", doctorPMDC)
             intent.putExtra("doctorName", doctorName)
-            intent.putExtra("logged", 1)
+            intent.putExtra("logged", 0)
+
 
             startActivity(intent)
-            finish()
 
         }
 
@@ -119,6 +117,14 @@ class  CreateAccountDoc4 : AppCompatActivity() {
 
 
 
+//use old data
+        val imageViewSelectedImage = findViewById<ImageView>(R.id.imageViewSelectedImage)
+        if (selectedImageUri != null) {
+            imageViewSelectedImage.setImageURI(selectedImageUri)
+        } else {
+            Log.e("CreateAccountDoc2", "selectedImageUri is null")
+
+        }
 
         //back
         val btnBack: ImageButton = findViewById(R.id.btnBack)
@@ -135,27 +141,15 @@ class  CreateAccountDoc4 : AppCompatActivity() {
             intent.putExtra("doctorGender", selectedGender)
             intent.putExtra("selectedImage", selectedImageUri)
             startActivity(intent)
-            finish()
         }
         //cancel
         val btnCancel: ImageButton = findViewById(R.id.btnCancel)
         btnCancel.setOnClickListener {
-            backButtonClickListener()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
 
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        // Call the same logic as your custom back button when the back button is pressed
-        backButtonClickListener()
-    }
-
-    private fun backButtonClickListener() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
     }
     private fun setUpNumberPickers() {
         // Set up the range for hour and minute pickers
@@ -178,6 +172,7 @@ class  CreateAccountDoc4 : AppCompatActivity() {
         if (checkBoxThursday.isChecked) selectedDays.add("Thursday")
         if (checkBoxFriday.isChecked) selectedDays.add("Friday")
         if (checkBoxSaturday.isChecked) selectedDays.add("Saturday")
+
         return selectedDays
     }
 
@@ -206,8 +201,8 @@ class  CreateAccountDoc4 : AppCompatActivity() {
                 consultPrice,
                 consultPriceInfo,
                 location,
-                intent.getDoubleExtra("latitude", 0.0),
-                intent.getDoubleExtra("longitude", 0.0),
+                latitude,
+                longitude,
                 selectedCity,
                 selectedDays,
                 "$startHour:$startMinute",
@@ -216,37 +211,10 @@ class  CreateAccountDoc4 : AppCompatActivity() {
                 doctorPhone
 
             )
-            createDoctorAccount(doctorEmail.trim(), doctorPassword.trim())
             saveDoctorToFirebase(doctor)
         }else{
             Toast.makeText(this, "Please select at least one day..", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun createDoctorAccount(doctorEmail: String, doctorPassword: String) {
-        val auth = FirebaseAuth.getInstance()
-
-        auth.createUserWithEmailAndPassword(doctorEmail, doctorPassword)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Account creation successful
-                    val user = auth.currentUser
-                    if (user != null) {
-                        // Do something with the user (optional)
-                        Toast.makeText(
-                            baseContext, "Authentication succes.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                    }
-                } else {
-                    // If account creation fails, display a message to the user.
-                    Toast.makeText(
-                        baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
     }
 
     private fun saveDoctorToFirebase(doctor: Doctor) {
@@ -266,6 +234,3 @@ class  CreateAccountDoc4 : AppCompatActivity() {
         }
     }
 }
-
-
-

@@ -49,14 +49,12 @@ class CreateAccountDoc2 : AppCompatActivity() {
         btnBack.setOnClickListener {
             val intent = Intent(this, CreateAccountDoc::class.java)
             startActivity(intent)
-            finish()
         }
         //cancel
         val btnCancel: ImageButton = findViewById(R.id.btnCancel)
         btnCancel.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
         }
         //spinner show
         database = FirebaseDatabase.getInstance().reference.child("Specialities")
@@ -82,8 +80,19 @@ class CreateAccountDoc2 : AppCompatActivity() {
         doctorPassword = intent.getStringExtra("doctorPassword") ?: ""
         selectedGender = intent.getStringExtra("doctorGender") ?: ""
         selectedImageUri = intent.getParcelableExtra("selectedImage")
+        //test (to delete)
 
+        // Set the image for the ImageView
 
+        val imageViewSelectedImage = findViewById<ImageView>(R.id.imageViewSelectedImage)
+        if (selectedImageUri != null) {
+            imageViewSelectedImage.setImageURI(selectedImageUri)
+        } else {
+            // Log an error or show a placeholder image if selectedImageUri is null
+            Log.e("CreateAccountDoc2", "selectedImageUri is null")
+            // You can set a placeholder image resource if needed
+            // imageViewSelectedImage.setImageResource(R.drawable.placeholder_image)
+        }
 
 
         //next
@@ -133,7 +142,6 @@ class CreateAccountDoc2 : AppCompatActivity() {
                         intent.putExtra("selectedImage", selectedImageUri)
 
                         startActivity(intent)
-                        finish()
                     }
                 }
 

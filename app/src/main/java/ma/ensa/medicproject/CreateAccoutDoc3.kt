@@ -71,6 +71,22 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
         val selectedSpecialityId = intent.getIntExtra("selectedSpecialityId", 0)
 
 
+        //test (to delete)
+
+
+        val imageViewSelectedImage = findViewById<ImageView>(R.id.imageViewSelectedImage)
+        if (selectedImageUri != null) {
+            imageViewSelectedImage.setImageURI(selectedImageUri)
+        } else {
+            // Log an error or show a placeholder image if selectedImageUri is null
+            Log.e("CreateAccountDoc2", "selectedImageUri is null")
+            // You can set a placeholder image resource if needed
+            // imageViewSelectedImage.setImageResource(R.drawable.placeholder_image)
+        }
+
+
+
+
         // city spinner
         // Populate the Spinner with city names
         spinnerLocation = findViewById(R.id.spinnerCity)
@@ -83,7 +99,7 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
         spinnerLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedCity = parent?.getItemAtPosition(position).toString()
-              //  Toast.makeText(this@CreateAccoutDoc3, "Selected City: $selectedCity", Toast.LENGTH_SHORT).show()
+             //   Toast.makeText(this@CreateAccoutDoc3, "Selected City: $selectedCity", Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -195,7 +211,7 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
 
 
     override fun onLocationChanged(location: Location) {
-      // Toast.makeText(this, ""+location.latitude +","+location.longitude , Toast.LENGTH_SHORT).show()
+     //  Toast.makeText(this, ""+location.latitude +","+location.longitude , Toast.LENGTH_SHORT).show()
         val geocoder = Geocoder(this@CreateAccoutDoc3, Locale.getDefault())
         try {
             val addresses: List<Address>? = geocoder.getFromLocation(
@@ -205,9 +221,9 @@ class CreateAccoutDoc3 : AppCompatActivity() , LocationListener {
             )
             if (!addresses.isNullOrEmpty()) {
                 val cityName: String = addresses[0].locality ?: "Unknown City"
-              //  Toast.makeText(this, "Current City: $cityName", Toast.LENGTH_SHORT).show()
+             //   Toast.makeText(this, "Current City: $cityName", Toast.LENGTH_SHORT).show()
             } else {
-              //  Toast.makeText(this, "City information not available", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "City information not available", Toast.LENGTH_SHORT).show()
             }
             if (!addresses.isNullOrEmpty()) {
                 val address: String = addresses[0].getAddressLine(0)

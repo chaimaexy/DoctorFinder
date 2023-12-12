@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="@string/are_you_a_doctor"
+                    android:text="Are you a Doctor?"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -96,7 +96,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="49dp"
+                    android:layout_height="55dp"
                     android:layout_marginTop="8sp"
                     android:layout_weight="3"
                     android:accessibilityLiveRegion="none"
@@ -109,10 +109,10 @@
                     android:fontFamily="monospace"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="@string/step_4_4_working_hours"
+                    android:text="Step 4/4 : Working Hours"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display3"
                     android:textColor="@color/black"
-                    android:textSize="13sp"
+                    android:textSize="15sp"
                     app:emojiCompatEnabled="false" />
             </LinearLayout>
 
@@ -120,12 +120,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="@string/days_of_work" />
+                android:text="Days of work:" />
 
 
             <LinearLayout
                 android:id="@+id/days1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal">
@@ -153,7 +153,6 @@
 
 
 
-
             </LinearLayout>
 
             <LinearLayout
@@ -161,6 +160,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:gravity="center"
                 android:orientation="horizontal">
                 <CheckBox
                     android:id="@+id/checkBoxThursday"
@@ -168,6 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="Thursday" />
+
 
                 <CheckBox
                     android:id="@+id/checkBoxFriday"
@@ -182,13 +183,14 @@
                     android:layout_marginBottom="8dp"
                     android:text="Saturday" />
 
-                 </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="@string/hour_of_starting" />
+                android:text="Hour of starting:" />
 
             <LinearLayout
                 android:layout_width="362dp"
@@ -222,7 +224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="@string/hour_of_closing" />
+                android:text="Hour of closing:" />
 
             <LinearLayout
                 android:layout_width="362dp"
@@ -261,8 +263,20 @@
                 android:gravity="top"
                 android:layout_marginTop="16dp"
                 android:lines="3"
-                android:hint="@string/additional_info"
+                android:layout_marginBottom="20sp"
+                android:hint="Additional info... *"
                 android:layout_gravity="start|top"/>
+
+
+
+
+            <ImageView
+                android:id="@+id/imageViewSelectedImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:srcCompat="@tools:sample/avatars" />
+
 
 
 
@@ -275,10 +289,7 @@
 
                 android:background="@drawable/bg_btn_search_doc"
                 android:gravity="center"
-                android:layout_marginTop="50sp"
-                android:text="@string/submit"
-                android:drawableRight="@drawable/go"
-                android:padding="10sp"
+                android:text="Submit>"
                 android:textStyle="bold" />
 
         </LinearLayout>

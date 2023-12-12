@@ -20,7 +20,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.google.android.material.textfield.TextInputEditText
 import com.squareup.picasso.Picasso
 
 class CreateAccountDoc : AppCompatActivity() {
@@ -29,8 +28,8 @@ class CreateAccountDoc : AppCompatActivity() {
 
     private lateinit var doctorName: EditText
     private lateinit var doctorEmail: EditText
-    private lateinit var doctorPassword: TextInputEditText
-    private lateinit var doctorPasswordConfirm: TextInputEditText
+    private lateinit var doctorPassword: EditText
+    private lateinit var doctorPasswordConfirm: EditText
     private lateinit var imagePickerLauncher: ActivityResultLauncher<Intent>
     private lateinit var selectedImage: Uri
     private lateinit var selectedGender : String
@@ -54,10 +53,10 @@ class CreateAccountDoc : AppCompatActivity() {
             // checkedId will be the ID of the selected RadioButton
             when (checkedId) {
                 R.id.radioButtonMale -> {
-                     selectedGender = "Male"
+                    selectedGender = "Male"
                 }
                 R.id.radioButtonFemale -> {
-                     selectedGender = "Female"
+                    selectedGender = "Female"
                 }
 
             }
@@ -72,7 +71,7 @@ class CreateAccountDoc : AppCompatActivity() {
                     if (data != null) {
                         selectedImage = data.data!!
                         imageViewProfile.setImageURI(selectedImage)
-                       // Picasso.get().load(selectedImage).into(imageViewProfile)
+                        // Picasso.get().load(selectedImage).into(imageViewProfile)
                     }
                 }
             }
@@ -81,7 +80,6 @@ class CreateAccountDoc : AppCompatActivity() {
         btnBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
         }
         //
         val btnNext: Button = findViewById(R.id.doctor_sign_in_button1)
@@ -89,11 +87,11 @@ class CreateAccountDoc : AppCompatActivity() {
         btnNext.setOnClickListener {
             if(doctorName.text.isNotEmpty() &&
                 doctorEmail.text.isNotEmpty() &&
-                doctorPassword.text.toString().isNotBlank() &&
+                doctorPassword.text.isNotEmpty() &&
                 ::selectedImage.isInitialized&& // Check if lateinit property is initialized
                 selectedImage != null &&
                 radioGroupGender.checkedRadioButtonId != -1
-                ) {
+            ) {
                 if(doctorPassword.text.toString() == doctorPasswordConfirm.text.toString()){
                     val intent = Intent(this, CreateAccountDoc2::class.java)
 
@@ -104,7 +102,6 @@ class CreateAccountDoc : AppCompatActivity() {
                     intent.putExtra("doctorGender", selectedGender)
                     intent.putExtra("selectedImage", selectedImage)
                     startActivity(intent)
-                    finish()
                 }else{
                     Toast.makeText(this, "Confirmation of password incorrect", Toast.LENGTH_SHORT).show()
                 }
@@ -116,10 +113,10 @@ class CreateAccountDoc : AppCompatActivity() {
 
 
     }
-        fun selectProfilePicture(view: View) {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            imagePickerLauncher.launch(intent)
-        }
+    fun selectProfilePicture(view: View) {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        imagePickerLauncher.launch(intent)
+    }
 
 
 
