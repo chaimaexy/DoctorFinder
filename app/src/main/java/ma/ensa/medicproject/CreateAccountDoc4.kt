@@ -16,6 +16,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.TimePicker
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class  CreateAccountDoc4 : AppCompatActivity() {
@@ -212,6 +213,7 @@ class  CreateAccountDoc4 : AppCompatActivity() {
 
             )
             saveDoctorToFirebase(doctor)
+            createDoctorAccount(doctorEmail.trim(), doctorPassword.trim())
         }else{
             Toast.makeText(this, "Please select at least one day..", Toast.LENGTH_SHORT).show()
         }
@@ -232,5 +234,31 @@ class  CreateAccountDoc4 : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Error generating Doctor key", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun createDoctorAccount(doctorEmail: String, doctorPassword: String) {
+        val auth = FirebaseAuth.getInstance()
+
+        auth.createUserWithEmailAndPassword(doctorEmail, doctorPassword)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Account creation successful
+                    val user = auth.currentUser
+                    if (user != null) {
+                        // Do something with the user (optional)
+                        Toast.makeText(
+                            baseContext, "Authentication succes.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    }
+                } else {
+                    // If account creation fails, display a message to the user.
+                    Toast.makeText(
+                        baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
     }
 }
